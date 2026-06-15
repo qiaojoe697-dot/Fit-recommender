@@ -178,5 +178,14 @@
     "style": "casual",
     "season": ["spring", "summer", "autumn"],
     "occasion": ["casual"]
+  },
+  {
+  "id": "top-007",
+  "name": "红色连衣裙",
+  "category": "top",
+  "colors": ["red"],
+  "style": "casual",
+  "season": ["spring", "summer"],
+  "occasion": ["casual", "formal"]
   }
 ]

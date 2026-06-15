@@ -54,13 +54,94 @@
     "occasion": ["business", "formal"]
   },
   {
+    "id": "top-007",
+    "name": "红色连衣裙",
+    "category": "top",
+    "colors": ["red"],
+    "style": "casual",
+    "season": ["spring", "summer"],
+    "occasion": ["casual", "formal", "date"]
+  },
+  {
+    "id": "top-008",
+    "name": "黑色高领毛衣",
+    "category": "top",
+    "colors": ["black"],
+    "style": "casual",
+    "season": ["autumn", "winter"],
+    "occasion": ["casual", "business", "date"]
+  },
+  {
+    "id": "top-009",
+    "name": "格纹法兰绒衬衫",
+    "category": "top",
+    "colors": ["red", "black"],
+    "style": "street",
+    "season": ["autumn", "winter"],
+    "occasion": ["casual", "date"]
+  },
+  {
+    "id": "top-010",
+    "name": "白色oversized卫衣",
+    "category": "top",
+    "colors": ["white"],
+    "style": "street",
+    "season": ["spring", "autumn", "winter"],
+    "occasion": ["casual"]
+  },
+  {
+    "id": "top-011",
+    "name": "橄榄绿工装夹克",
+    "category": "top",
+    "colors": ["green"],
+    "style": "street",
+    "season": ["spring", "autumn"],
+    "occasion": ["casual", "date"]
+  },
+  {
+    "id": "top-012",
+    "name": "浅蓝色牛仔衬衫",
+    "category": "top",
+    "colors": ["blue"],
+    "style": "casual",
+    "season": ["spring", "summer", "autumn"],
+    "occasion": ["casual", "date"]
+  },
+  {
+    "id": "top-013",
+    "name": "粉色吊带背心",
+    "category": "top",
+    "colors": ["pink"],
+    "style": "casual",
+    "season": ["spring", "summer"],
+    "occasion": ["casual", "date"]
+  },
+  {
+    "id": "top-014",
+    "name": "藏青色西装外套",
+    "category": "top",
+    "colors": ["navy"],
+    "style": "formal",
+    "season": ["spring", "autumn", "winter"],
+    "occasion": ["business", "formal", "date"]
+  },
+  {
+    "id": "top-015",
+    "name": "黑色运动卫衣",
+    "category": "top",
+    "colors": ["black"],
+    "style": "sporty",
+    "season": ["spring", "autumn", "winter"],
+    "occasion": ["sporty", "casual"]
+  },
+  {
     "id": "bottom-001",
     "name": "蓝色牛仔裤",
     "category": "bottom",
     "colors": ["blue"],
     "style": "casual",
     "season": ["spring", "summer", "autumn"],
-    "occasion": ["casual"]
+    "occasion": ["casual", "date"]
   },
   {
     "id": "bottom-002",
@@ -105,7 +186,61 @@
     "colors": ["white"],
     "style": "casual",
     "season": ["spring", "summer"],
+    "occasion": ["casual", "date"]
+  },
+  {
+    "id": "bottom-007",
+    "name": "黑色皮质短裙",
+    "category": "bottom",
+    "colors": ["black"],
+    "style": "street",
+    "season": ["spring", "autumn"],
+    "occasion": ["casual", "date"]
+  },
+  {
+    "id": "bottom-008",
+    "name": "米白色阔腿裤",
+    "category": "bottom",
+    "colors": ["beige"],
+    "style": "casual",
+    "season": ["spring", "summer", "autumn"],
+    "occasion": ["casual", "business", "date"]
+  },
+  {
+    "id": "bottom-009",
+    "name": "深蓝色修身牛仔裤",
+    "category": "bottom",
+    "colors": ["navy"],
+    "style": "casual",
+    "season": ["spring", "autumn", "winter"],
+    "occasion": ["casual", "business", "date"]
+  },
+  {
+    "id": "bottom-010",
+    "name": "格纹半身裙",
+    "category": "bottom",
+    "colors": ["brown", "beige"],
+    "style": "casual",
+    "season": ["autumn", "winter"],
+    "occasion": ["casual", "date"]
+  },
+  {
+    "id": "bottom-011",
+    "name": "军绿色工装裤",
+    "category": "bottom",
+    "colors": ["green"],
+    "style": "street",
+    "season": ["spring", "autumn"],
     "occasion": ["casual"]
+  },
+  {
+    "id": "bottom-012",
+    "name": "黑色瑜伽裤",
+    "category": "bottom",
+    "colors": ["black"],
+    "style": "sporty",
+    "season": ["spring", "summer", "autumn", "winter"],
+    "occasion": ["sporty"]
   },
   {
     "id": "shoes-001",
@@ -132,7 +267,7 @@
     "colors": ["brown"],
     "style": "formal",
     "season": ["spring", "summer", "autumn"],
-    "occasion": ["casual", "business"]
+    "occasion": ["casual", "business", "date"]
   },
   {
     "id": "shoes-004",
@@ -150,7 +285,61 @@
     "colors": ["brown"],
     "style": "casual",
     "season": ["autumn", "winter"],
+    "occasion": ["casual", "date"]
+  },
+  {
+    "id": "shoes-006",
+    "name": "黑色高跟鞋",
+    "category": "shoes",
+    "colors": ["black"],
+    "style": "formal",
+    "season": ["spring", "summer", "autumn", "winter"],
+    "occasion": ["formal", "date"]
+  },
+  {
+    "id": "shoes-007",
+    "name": "米白色帆布鞋",
+    "category": "shoes",
+    "colors": ["beige", "white"],
+    "style": "casual",
+    "season": ["spring", "summer", "autumn"],
+    "occasion": ["casual", "date"]
+  },
+  {
+    "id": "shoes-008",
+    "name": "黑色厚底马丁靴",
+    "category": "shoes",
+    "colors": ["black"],
+    "style": "street",
+    "season": ["autumn", "winter"],
+    "occasion": ["casual", "date"]
+  },
+  {
+    "id": "shoes-009",
+    "name": "白色老爹鞋",
+    "category": "shoes",
+    "colors": ["white", "gray"],
+    "style": "street",
+    "season": ["spring", "summer", "autumn"],
     "occasion": ["casual"]
+  },
+  {
+    "id": "shoes-010",
+    "name": "藏青色帆船鞋",
+    "category": "shoes",
+    "colors": ["navy"],
+    "style": "casual",
+    "season": ["spring", "summer"],
+    "occasion": ["casual", "business"]
+  },
+  {
+    "id": "shoes-011",
+    "name": "黑色运动跑鞋",
+    "category": "shoes",
+    "colors": ["black"],
+    "style": "sporty",
+    "season": ["spring", "summer", "autumn", "winter"],
+    "occasion": ["sporty", "casual"]
   },
   {
     "id": "acc-001",
@@ -174,9 +363,72 @@
     "id": "acc-003",
     "name": "深蓝色帆布背包",
     "category": "accessory",
-    "colors": ["blue"],
+    "colors": ["navy"],
     "style": "casual",
     "season": ["spring", "summer", "autumn"],
     "occasion": ["casual"]
+  },
+  {
+    "id": "acc-004",
+    "name": "金色项链",
+    "category": "accessory",
+    "colors": ["gold"],
+    "style": "formal",
+    "season": ["spring", "summer", "autumn", "winter"],
+    "occasion": ["formal", "date", "casual"]
+  },
+  {
+    "id": "acc-005",
+    "name": "棕色皮质腰带",
+    "category": "accessory",
+    "colors": ["brown"],
+    "style": "casual",
+    "season": ["spring", "summer", "autumn", "winter"],
+    "occasion": ["casual", "business"]
+  },
+  {
+    "id": "acc-006",
+    "name": "黑色托特包",
+    "category": "accessory",
+    "colors": ["black"],
+    "style": "casual",
+    "season": ["spring", "summer", "autumn", "winter"],
+    "occasion": ["casual", "business", "date"]
+  },
+  {
+    "id": "acc-007",
+    "name": "米白色针织围巾",
+    "category": "accessory",
+    "colors": ["beige"],
+    "style": "casual",
+    "season": ["autumn", "winter"],
+    "occasion": ["casual", "date"]
+  },
+  {
+    "id": "acc-008",
+    "name": "黑色太阳镜",
+    "category": "accessory",
+    "colors": ["black"],
+    "style": "street",
+    "season": ["spring", "summer"],
+    "occasion": ["casual", "date"]
+  },
+  {
+    "id": "acc-009",
+    "name": "红色手提包",
+    "category": "accessory",
+    "colors": ["red"],
+    "style": "formal",
+    "season": ["spring", "summer", "autumn", "winter"],
+    "occasion": ["formal", "date"]
+  },
+  {
+    "id": "acc-010",
+    "name": "灰色运动背包",
+    "category": "accessory",
+    "colors": ["gray"],
+    "style": "sporty",
+    "season": ["spring", "summer", "autumn", "winter"],
+    "occasion": ["sporty", "casual"]
   }
 ]

@@ -1,6 +1,6 @@
 # LoopFit — 穿搭推荐系统
 
-基于 [Loop Engineering](https://addyosmani.com/blog/loop-engineering/) 方法论构建的穿搭推荐系统。用户输入季节、场合、风格偏好，系统基于内容相似度算法返回 Top-N 搭配推荐。
+基于 [Loop Engineering](https://addyosmani.com/blog/loop-engineering/) 方法论构建的穿搭推荐系统。用户输入季节、场合、风格偏好，系统基于内容相似度算法返回 Top-N 搭配推荐。项目目的是为了学习Loop Engineering工作模式熟悉Ai coding常用工作模式喵~
 
 ## 快速开始
 

@@ -1,0 +1,145 @@
+"""
+测试 profile.py 的用户画像构建与相似度计算
+"""
+from src.model import OutfitRecord, UserBehavior, UserProfile
+from src.profile import (
+    build_implicit_tags,
+    build_user_profile,
+    jaccard_similarity,
+    weighted_jaccard,
+)
+
+# ── 测试数据 ──────────────────────────────────────────────────────────────────
+
+OUTFITS = {
+    "o1": OutfitRecord("o1", "清新校园风", ["休闲", "校园", "夏季"]),
+    "o2": OutfitRecord("o2", "都市通勤", ["商务", "通勤", "秋季"]),
+    "o3": OutfitRecord("o3", "街头潮搭", ["街头", "潮流", "休闲"]),
+}
+
+# ── 基础杰卡德相似度 ──────────────────────────────────────────────────────────
+
+def test_jaccard_identical():
+    assert jaccard_similarity({"a", "b"}, {"a", "b"}) == 1.0
+
+def test_jaccard_no_overlap():
+    assert jaccard_similarity({"a", "b"}, {"c", "d"}) == 0.0
+
+def test_jaccard_partial():
+    # {休闲,校园,夏季} ∩ {休闲,日常,夏季} = {休闲,夏季} → 2/4 = 0.5
+    a = {"休闲", "校园", "夏季"}
+    b = {"休闲", "日常", "夏季"}
+    assert jaccard_similarity(a, b) == 0.5
+
+def test_jaccard_both_empty():
+    assert jaccard_similarity(set(), set()) == 0.0
+
+def test_jaccard_one_empty():
+    assert jaccard_similarity({"a"}, set()) == 0.0
+
+# ── 隐式画像构建 ──────────────────────────────────────────────────────────────
+
+def test_build_implicit_tags_basic():
+    behaviors = [
+        UserBehavior("o1", "view"),   # 休闲+1, 校园+1, 夏季+1
+        UserBehavior("o1", "like"),   # 休闲+2, 校园+2, 夏季+2 (like weight=2)
+        UserBehavior("o3", "view"),   # 街头+1, 潮流+1, 休闲+1
+    ]
+    # 休闲累计 = 1+2+1 = 4, 校园 = 1+2 = 3, 夏季 = 1+2 = 3
+    # 街头 = 1, 潮流 = 1  → 低于默认阈值 2.0
+    implicit = build_implicit_tags(behaviors, OUTFITS, freq_threshold=2.0)
+    assert "休闲" in implicit
+    assert "校园" in implicit
+    assert "夏季" in implicit
+    assert "街头" not in implicit  # 频次 1.0 < 阈值 2.0
+
+def test_build_implicit_tags_empty_behaviors():
+    assert build_implicit_tags([], OUTFITS) == set()
+
+def test_build_implicit_tags_missing_outfit():
+    # outfit_id 不存在时跳过，不报错
+    behaviors = [UserBehavior("nonexistent", "view")]
+    result = build_implicit_tags(behaviors, OUTFITS)
+    assert result == set()
+
+# ── 用户画像合并 ──────────────────────────────────────────────────────────────
+
+def test_build_user_profile_merged():
+    behaviors = [
+        UserBehavior("o1", "like"),
+        UserBehavior("o1", "like"),
+    ]
+    profile = build_user_profile("u1", {"formal"}, behaviors, OUTFITS, freq_threshold=2.0)
+    # 显式有 formal，隐式有 休闲/校园/夏季
+    assert "formal" in profile.explicit_tags
+    assert "休闲" in profile.implicit_tags
+    assert "formal" in profile.merged_tags
+    assert "休闲" in profile.merged_tags
+
+def test_build_user_profile_no_behaviors():
+    profile = build_user_profile("u2", {"casual", "summer"}, [], OUTFITS)
+    assert profile.merged_tags == {"casual", "summer"}
+    assert profile.implicit_tags == set()
+
+# ── 加权杰卡德相似度 ──────────────────────────────────────────────────────────
+
+def test_weighted_jaccard_no_profile():
+    profile = UserProfile("u1")  # 空画像
+    result = weighted_jaccard(profile, {"casual"})
+    assert result == 0.0
+
+def test_weighted_jaccard_explicit_higher_than_basic():
+    # 显式权重 2.0，显式标签匹配时得分应高于基础杰卡德
+    profile = UserProfile("u1", explicit_tags={"休闲", "夏季"}, implicit_tags=set())
+    outfit_tags = {"休闲", "夏季", "校园"}
+    basic = jaccard_similarity(profile.merged_tags, outfit_tags)
+    weighted = weighted_jaccard(profile, outfit_tags, w_explicit=2.0, w_implicit=1.0)
+    assert weighted >= basic
+
+def test_weighted_jaccard_no_overlap():
+    profile = UserProfile("u1", explicit_tags={"formal"}, implicit_tags=set())
+    result = weighted_jaccard(profile, {"sporty", "outdoor"})
+    assert result == 0.0
+
+# ── outfit_recommender 集成测试 ───────────────────────────────────────────────
+
+def test_recommend_for_user_cold_start():
+    from src.outfit_recommender import recommend_for_user
+    from src.model import OutfitRecord
+    outfits = [
+        OutfitRecord("o1", "A", ["休闲"], popularity=100),
+        OutfitRecord("o2", "B", ["商务"], popularity=50),
+    ]
+    result = recommend_for_user(profile=None, outfits=outfits, top_n=2)
+    assert len(result) == 2
+    assert result[0][0].id == "o1"  # 热门度高的排前面
+
+def test_recommend_for_user_with_profile():
+    from src.outfit_recommender import recommend_for_user
+    from src.model import OutfitRecord
+    outfits = [
+        OutfitRecord("o1", "A", ["休闲", "夏季"], popularity=10),
+        OutfitRecord("o2", "B", ["商务", "秋季"], popularity=200),
+    ]
+    profile = UserProfile("u1", explicit_tags={"休闲", "夏季"})
+    result = recommend_for_user(profile=profile, outfits=outfits, top_n=2)
+    assert result[0][0].id == "o1"  # 相似度高的排前面，即使热门度低
+
+def test_recommend_similar_high_low():
+    from src.outfit_recommender import recommend_similar
+    from src.model import OutfitRecord
+    outfits = [
+        OutfitRecord("target", "目标", ["休闲", "夏季", "校园"]),
+        OutfitRecord("o1", "高相似", ["休闲", "夏季", "日常"]),   # 相似度应 > 0.3
+        OutfitRecord("o2", "低相似", ["商务", "冬季", "正式"]),   # 相似度应 < 0.3
+    ]
+    result = recommend_similar("target", outfits=outfits, threshold=0.3)
+    high_ids = [o.id for o, _ in result["high"]]
+    low_ids = [o.id for o, _ in result["low"]]
+    assert "o1" in high_ids
+    assert "o2" in low_ids
+
+def test_recommend_similar_missing_target():
+    from src.outfit_recommender import recommend_similar
+    result = recommend_similar("nonexistent", outfits=[])
+    assert result == {"high": [], "low": []}

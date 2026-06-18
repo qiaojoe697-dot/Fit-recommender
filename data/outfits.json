@@ -1,182 +1,74 @@
-from __future__ import annotations
-
-import json
-import os
-from pathlib import Path
-from typing import Dict, List, Optional, Tuple
-
-from src.model import OutfitRecord, UserProfile
-from src.profile import jaccard_similarity, weighted_jaccard
-
-_DATA_DIR = Path(__file__).resolve().parent.parent / "data"
-_OUTFIT_API_URL = os.environ.get("OUTFIT_API_URL", "")
-
-_SIMILAR_HIGH_COUNT = 10
-_SIMILAR_LOW_COUNT = 10
-_SIMILARITY_THRESHOLD = 0.3
-
-
-# ─────────────────────────────
-# 数据加载（带缓存优化 + 可观测日志）
-# ─────────────────────────────
-
-_cached_outfits: Optional[List[OutfitRecord]] = None
-
-
-def load_outfits() -> List[OutfitRecord]:
-    global _cached_outfits
-
-    if _cached_outfits is not None:
-        return _cached_outfits
-
-    try:
-        if _OUTFIT_API_URL:
-            _cached_outfits = _load_from_api(_OUTFIT_API_URL)
-        else:
-            _cached_outfits = _load_from_json()
-    except Exception as e:
-        print(f"[WARN] load_outfits failed: {e}")
-        _cached_outfits = _load_from_json()
-
-    return _cached_outfits
-
-
-def _load_from_json() -> List[OutfitRecord]:
-    path = _DATA_DIR / "outfits.json"
-    if not path.exists():
-        return []
-
-    with open(path, encoding="utf-8") as f:
-        raw = json.load(f)
-
-    return [
-        OutfitRecord(
-            id=d["id"],
-            name=d["name"],
-            tags=d.get("tags", []),
-            popularity=d.get("popularity", 0),
-        )
-        for d in raw
-    ]
-
-
-def _load_from_api(url: str) -> List[OutfitRecord]:
-    try:
-        import urllib.request
-
-        with urllib.request.urlopen(url, timeout=5) as resp:
-            raw = json.loads(resp.read().decode())
-
-        return [
-            OutfitRecord(
-                id=d["id"],
-                name=d["name"],
-                tags=d.get("tags", []),
-                popularity=d.get("popularity", 0),
-            )
-            for d in raw
-        ]
-
-    except Exception as e:
-        print(f"[WARN] API fallback triggered: {e}")
-        return _load_from_json()
-
-
-def build_outfit_map(outfits: List[OutfitRecord]) -> Dict[str, OutfitRecord]:
-    return {o.id: o for o in outfits}
-
-
-# ─────────────────────────────
-# 首页推荐
-# ─────────────────────────────
-
-def recommend_for_user(
-    profile: Optional[UserProfile],
-    outfits: Optional[List[OutfitRecord]] = None,
-    top_n: int = 10,
-    use_weighted: bool = True,
-    w_explicit: float = 2.0,
-    w_implicit: float = 1.0,
-) -> List[Tuple[OutfitRecord, float]]:
-
-    outfits = outfits or load_outfits()
-
-    # 冷启动
-    if profile is None or not getattr(profile, "merged_tags", None):
-        max_pop = max((o.popularity for o in outfits), default=1) or 1
-        ranked = sorted(outfits, key=lambda o: o.popularity, reverse=True)
-
-        return [
-            (o, round(o.popularity / max_pop, 4))
-            for o in ranked[:top_n]
-        ]
-
-    scored: List[Tuple[OutfitRecord, float]] = []
-
-    for outfit in outfits:
-        try:
-            if use_weighted:
-                score = weighted_jaccard(
-                    profile.explicit_tags,
-                    profile.implicit_tags,
-                    outfit.tag_set(),
-                    w_explicit,
-                    w_implicit,
-                )
-            else:
-                score = jaccard_similarity(
-                    profile.merged_tags,
-                    outfit.tag_set(),
-                )
-
-            scored.append((outfit, round(score, 4)))
-
-        except Exception:
-            continue
-
-    scored.sort(key=lambda x: x[1], reverse=True)
-    return scored[:top_n]
-
-
-# ─────────────────────────────
-# 详情页推荐（修复 high/low 逻辑）
-# ─────────────────────────────
-
-def recommend_similar(
-    target_outfit_id: str,
-    outfits: Optional[List[OutfitRecord]] = None,
-    high_count: int = _SIMILAR_HIGH_COUNT,
-    low_count: int = _SIMILAR_LOW_COUNT,
-) -> Dict[str, List[Tuple[OutfitRecord, float]]]:
-
-    outfits = outfits or load_outfits()
-    outfit_map = build_outfit_map(outfits)
-
-    target = outfit_map.get(target_outfit_id)
-    if not target:
-        return {"high": [], "low": []}
-
-    target_tags = target.tag_set()
-
-    scored = []
-
-    for outfit in outfits:
-        if outfit.id == target_outfit_id:
-            continue
-
-        try:
-            score = jaccard_similarity(target_tags, outfit.tag_set())
-            scored.append((outfit, round(score, 4)))
-        except Exception:
-            continue
-
-    # 🔥 统一排序（修复你原来的分桶错误）
-    scored.sort(key=lambda x: x[1], reverse=True)
-
-    high = scored[:high_count]
-    low = list(reversed(scored))[:low_count]
-
-    return {
-        "high": high,
-        "low": low,
-    }
+[
+  {
+    "id": "o001",
+    "name": "清新校园风",
+    "tags": ["休闲", "校园", "夏季", "casual", "spring", "summer"],
+    "popularity": 320
+  },
+  {
+    "id": "o002",
+    "name": "都市通勤穿搭",
+    "tags": ["商务", "通勤", "秋季", "formal", "business", "autumn"],
+    "popularity": 280
+  },
+  {
+    "id": "o003",
+    "name": "周末街头潮搭",
+    "tags": ["街头", "潮流", "休闲", "street", "casual", "spring"],
+    "popularity": 410
+  },
+  {
+    "id": "o004",
+    "name": "约会浪漫风",
+    "tags": ["约会", "浪漫", "夏季", "date", "casual", "summer"],
+    "popularity": 380
+  },
+  {
+    "id": "o005",
+    "name": "运动健身风",
+    "tags": ["运动", "健身", "春季", "sporty", "spring", "summer"],
+    "popularity": 210
+  },
+  {
+    "id": "o006",
+    "name": "秋冬温柔系",
+    "tags": ["温柔", "休闲", "秋季", "casual", "date", "autumn"],
+    "popularity": 290
+  },
+  {
+    "id": "o007",
+    "name": "正式晚宴风",
+    "tags": ["正式", "晚宴", "冬季", "formal", "winter"],
+    "popularity": 150
+  },
+  {
+    "id": "o008",
+    "name": "轻户外探索风",
+    "tags": ["户外", "运动", "春季", "sporty", "casual", "spring"],
+    "popularity": 175
+  },
+  {
+    "id": "o009",
+    "name": "复古港风穿搭",
+    "tags": ["街头", "复古", "秋季", "street", "date", "autumn"],
+    "popularity": 340
+  },
+  {
+    "id": "o010",
+    "name": "简约商务正装",
+    "tags": ["商务", "正式", "春季", "business", "formal", "spring"],
+    "popularity": 195
+  },
+  {
+    "id": "o011",
+    "name": "夏日海边度假",
+    "tags": ["休闲", "度假", "夏季", "casual", "date", "summer"],
+    "popularity": 430
+  },
+  {
+    "id": "o012",
+    "name": "慵懒居家风",
+    "tags": ["休闲", "居家", "冬季", "casual", "winter"],
+    "popularity": 260
+  }
+]

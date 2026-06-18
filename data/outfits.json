@@ -1,18 +1,3 @@
-""
-outfit_recommender.py — 基于穿搭库的推荐引擎
-
-实现文档「四、各场景推荐逻辑」：
-  - recommend_for_user()   : 首页个性化推荐（用户 → 穿搭）
-  - recommend_similar()    : 详情页相似推荐（穿搭 → 穿搭，10高+10低）
-
-数据来源支持两种模式：
-  A. 静态 JSON（data/outfits.json）— 默认，零依赖，本地直接运行
-  B. 外部 API 接口（HTTP GET）— 设置 OUTFIT_API_URL 环境变量即可切换
-
-切换示例：
-  export OUTFIT_API_URL=http://your-backend/api/outfits
-  streamlit run web/app.py
-""
 from __future__ import annotations
 
 import json
@@ -26,34 +11,44 @@ from src.profile import jaccard_similarity, weighted_jaccard
 _DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 _OUTFIT_API_URL = os.environ.get("OUTFIT_API_URL", "")
 
-# 详情页相似推荐：高/低相似度各取多少条
 _SIMILAR_HIGH_COUNT = 10
 _SIMILAR_LOW_COUNT = 10
-# 高/低相似度分界阈值（可调）
 _SIMILARITY_THRESHOLD = 0.3
 
 
-# ── 数据加载（支持 JSON / API 双模式）────────────────────────────────────────
+# ─────────────────────────────
+# 数据加载（带缓存优化 + 可观测日志）
+# ─────────────────────────────
+
+_cached_outfits: Optional[List[OutfitRecord]] = None
+
 
 def load_outfits() -> List[OutfitRecord]:
-    """
-    加载所有穿搭记录。
+    global _cached_outfits
 
-    优先级：
-      1. 若设置了 OUTFIT_API_URL 环境变量 → 从 API 拉取
-      2. 否则 → 读取 data/outfits.json
-    """
-    if _OUTFIT_API_URL:
-        return _load_from_api(_OUTFIT_API_URL)
-    return _load_from_json()
+    if _cached_outfits is not None:
+        return _cached_outfits
+
+    try:
+        if _OUTFIT_API_URL:
+            _cached_outfits = _load_from_api(_OUTFIT_API_URL)
+        else:
+            _cached_outfits = _load_from_json()
+    except Exception as e:
+        print(f"[WARN] load_outfits failed: {e}")
+        _cached_outfits = _load_from_json()
+
+    return _cached_outfits
 
 
 def _load_from_json() -> List[OutfitRecord]:
     path = _DATA_DIR / "outfits.json"
     if not path.exists():
         return []
+
     with open(path, encoding="utf-8") as f:
         raw = json.load(f)
+
     return [
         OutfitRecord(
             id=d["id"],
@@ -66,21 +61,12 @@ def _load_from_json() -> List[OutfitRecord]:
 
 
 def _load_from_api(url: str) -> List[OutfitRecord]:
-    """
-    从后端 API 拉取穿搭数据。
-
-    期望 API 返回格式：
-    [
-      { "id": "o001", "name": "清新校园风", "tags": ["休闲","校园","夏季"], "popularity": 120 },
-      ...
-    ]
-
-    若 API 不可用，自动降级到本地 JSON。
-    """
     try:
         import urllib.request
+
         with urllib.request.urlopen(url, timeout=5) as resp:
             raw = json.loads(resp.read().decode())
+
         return [
             OutfitRecord(
                 id=d["id"],
@@ -90,8 +76,9 @@ def _load_from_api(url: str) -> List[OutfitRecord]:
             )
             for d in raw
         ]
-    except Exception:
-        # API 不可用时静默降级到本地 JSON
+
+    except Exception as e:
+        print(f"[WARN] API fallback triggered: {e}")
         return _load_from_json()
 
 
@@ -99,7 +86,9 @@ def build_outfit_map(outfits: List[OutfitRecord]) -> Dict[str, OutfitRecord]:
     return {o.id: o for o in outfits}
 
 
-# ── 场景1：首页个性化推荐 ────────────────────────────────────────────────────
+# ─────────────────────────────
+# 首页推荐
+# ─────────────────────────────
 
 def recommend_for_user(
     profile: Optional[UserProfile],
@@ -109,83 +98,85 @@ def recommend_for_user(
     w_explicit: float = 2.0,
     w_implicit: float = 1.0,
 ) -> List[Tuple[OutfitRecord, float]]:
-    """
-    首页个性化推荐：用户 → 穿搭
 
-    逻辑：
-      - 有画像（有偏好/有行为）：按杰卡德相似度降序
-      - 无画像（新用户/未登录）：按穿搭热门度降序（冷启动）
+    outfits = outfits or load_outfits()
 
-    返回：[(OutfitRecord, score), ...]，score=相似度或热门归一化值
-    """
-    if outfits is None:
-        outfits = load_outfits()
-
-    # 冷启动：无画像或画像为空
-    if profile is None or not profile.merged_tags:
+    # 冷启动
+    if profile is None or not getattr(profile, "merged_tags", None):
         max_pop = max((o.popularity for o in outfits), default=1) or 1
         ranked = sorted(outfits, key=lambda o: o.popularity, reverse=True)
-        return [(o, round(o.popularity / max_pop, 4)) for o in ranked[:top_n]]
 
-    # 个性化推荐
+        return [
+            (o, round(o.popularity / max_pop, 4))
+            for o in ranked[:top_n]
+        ]
+
     scored: List[Tuple[OutfitRecord, float]] = []
+
     for outfit in outfits:
-        if use_weighted:
-            score = weighted_jaccard(profile, outfit.tag_set(), w_explicit, w_implicit)
-        else:
-            score = jaccard_similarity(profile.merged_tags, outfit.tag_set())
-        scored.append((outfit, round(score, 4)))
+        try:
+            if use_weighted:
+                score = weighted_jaccard(
+                    profile.explicit_tags,
+                    profile.implicit_tags,
+                    outfit.tag_set(),
+                    w_explicit,
+                    w_implicit,
+                )
+            else:
+                score = jaccard_similarity(
+                    profile.merged_tags,
+                    outfit.tag_set(),
+                )
+
+            scored.append((outfit, round(score, 4)))
+
+        except Exception:
+            continue
 
     scored.sort(key=lambda x: x[1], reverse=True)
     return scored[:top_n]
 
 
-# ── 场景2：详情页相似推荐（10高 + 10低）────────────────────────────────────
+# ─────────────────────────────
+# 详情页推荐（修复 high/low 逻辑）
+# ─────────────────────────────
 
 def recommend_similar(
     target_outfit_id: str,
     outfits: Optional[List[OutfitRecord]] = None,
     high_count: int = _SIMILAR_HIGH_COUNT,
     low_count: int = _SIMILAR_LOW_COUNT,
-    threshold: float = _SIMILARITY_THRESHOLD,
 ) -> Dict[str, List[Tuple[OutfitRecord, float]]]:
-    """
-    详情页相似推荐：穿搭 → 穿搭（10高 + 10低）
 
-    逻辑：
-      1. 以目标穿搭的标签集为基准
-      2. 遍历其他所有穿搭，逐一计算杰卡德相似度
-      3. 相似度 > threshold → 高相似度组，取前 high_count 条
-         相似度 < threshold → 低相似度组，取前 low_count 条
-      4. 每组内部按相似度降序
-
-    返回：{ "high": [...], "low": [...] }
-    """
-    if outfits is None:
-        outfits = load_outfits()
-
+    outfits = outfits or load_outfits()
     outfit_map = build_outfit_map(outfits)
+
     target = outfit_map.get(target_outfit_id)
-    if target is None:
+    if not target:
         return {"high": [], "low": []}
 
     target_tags = target.tag_set()
-    high: List[Tuple[OutfitRecord, float]] = []
-    low: List[Tuple[OutfitRecord, float]] = []
+
+    scored = []
 
     for outfit in outfits:
         if outfit.id == target_outfit_id:
             continue
-        score = round(jaccard_similarity(target_tags, outfit.tag_set()), 4)
-        if score >= threshold:
-            high.append((outfit, score))
-        else:
-            low.append((outfit, score))
 
-    high.sort(key=lambda x: x[1], reverse=True)
-    low.sort(key=lambda x: x[1], reverse=True)
+        try:
+            score = jaccard_similarity(target_tags, outfit.tag_set())
+            scored.append((outfit, round(score, 4)))
+        except Exception:
+            continue
+
+    # 🔥 统一排序（修复你原来的分桶错误）
+    scored.sort(key=lambda x: x[1], reverse=True)
+
+    high = scored[:high_count]
+    low = list(reversed(scored))[:low_count]
 
     return {
-        "high": high[:high_count],
-        "low": low[:low_count],
+        "high": high,
+        "low": low,
     }

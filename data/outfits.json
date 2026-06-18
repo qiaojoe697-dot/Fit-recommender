@@ -1,4 +1,4 @@
-"""
+""
 outfit_recommender.py — 基于穿搭库的推荐引擎
 
 实现文档「四、各场景推荐逻辑」：
@@ -12,7 +12,7 @@ outfit_recommender.py — 基于穿搭库的推荐引擎
 切换示例：
   export OUTFIT_API_URL=http://your-backend/api/outfits
   streamlit run web/app.py
-"""
+""
 from __future__ import annotations
 
 import json

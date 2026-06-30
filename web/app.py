@@ -71,16 +71,16 @@ with tab1:
                 "pink":"🩷 粉","green":"💚 绿","gold":"🥇 金",
                 "purple":"💜 紫","orange":"🧡 橙"}.get(x, x), key="t1_color")
         
-        # 新增：标签偏好多选
-        tag_options = ["basic", "versatile", "classic", "oversized", "slim-fit", 
-                       "comfortable", "formal", "casual", "streetwear", "sporty",
-                       "denim", "leather", "knit", "vintage", "minimalist"]
+        # 新增：标签偏好多选（中文）
+        tag_options = ["基础款", "百搭", "经典", "宽松", "修身", 
+                       "舒适", "正式", "休闲", "街头", "运动",
+                       "牛仔", "皮质", "针织", "复古", "极简"]
         tag_prefs = st.multiselect(
             "🏷️ 风格标签偏好（可选）",
             tag_options,
             default=[],
             key="t1_tags",
-            help="选择你喜欢的风格标签，如oversized（宽松）、slim-fit（修身）、vintage（复古）等",
+            help="选择你喜欢的风格标签，如宽松、修身、复古、极简等",
         )
         
         top_n = st.slider("推荐数量", 1, 6, 3, key="t1_topn")
@@ -124,7 +124,7 @@ with tab1:
                             all_tags.extend(it.tags)
                         if all_tags:
                             tag_html = "".join(
-                                f'<span class="tag-chip">#{t}</span>' 
+                                f'<span class="tag-chip">{t}</span>' 
                                 for t in list(set(all_tags))[:6])
                             st.markdown(f"**风格标签：** {tag_html}", unsafe_allow_html=True)
                         

@@ -6,7 +6,10 @@
     "colors": ["white"],
     "style": "casual",
     "season": ["spring", "summer", "autumn"],
-    "occasion": ["casual", "sporty"]
+    "occasion": ["casual", "sporty"],
+    "material": "cotton",
+    "popularity": 95,
+    "tags": ["basic", "versatile", "everyday"]
   },
   {
     "id": "top-002",
@@ -15,7 +18,10 @@
     "colors": ["blue", "white"],
     "style": "casual",
     "season": ["spring", "summer"],
-    "occasion": ["casual", "business"]
+    "occasion": ["casual", "business"],
+    "material": "cotton",
+    "popularity": 80,
+    "tags": ["striped", "business-casual", "fresh"]
   },
   {
     "id": "top-003",
@@ -24,7 +30,10 @@
     "colors": ["black"],
     "style": "formal",
     "season": ["spring", "autumn", "winter"],
-    "occasion": ["business", "formal"]
+    "occasion": ["business", "formal"],
+    "material": "wool",
+    "popularity": 85,
+    "tags": ["blazer", "tailored", "professional"]
   },
   {
     "id": "top-004",
@@ -33,7 +42,10 @@
     "colors": ["gray"],
     "style": "sporty",
     "season": ["autumn", "winter"],
-    "occasion": ["casual", "sporty"]
+    "occasion": ["casual", "sporty"],
+    "material": "cotton",
+    "popularity": 90,
+    "tags": ["hoodie", "comfortable", "loungewear"]
   },
   {
     "id": "top-005",
@@ -42,7 +54,10 @@
     "colors": ["beige"],
     "style": "casual",
     "season": ["autumn", "winter"],
-    "occasion": ["casual", "business"]
+    "occasion": ["casual", "business"],
+    "material": "knit",
+    "popularity": 80,
+    "tags": ["knitwear", "cozy", "minimalist"]
   },
   {
     "id": "top-006",
@@ -51,7 +66,10 @@
     "colors": ["white"],
     "style": "formal",
     "season": ["spring", "summer", "autumn", "winter"],
-    "occasion": ["business", "formal"]
+    "occasion": ["business", "formal"],
+    "material": "cotton",
+    "popularity": 90,
+    "tags": ["dress-shirt", "formal", "must-have"]
   },
   {
     "id": "top-007",
@@ -60,7 +78,10 @@
     "colors": ["red"],
     "style": "casual",
     "season": ["spring", "summer"],
-    "occasion": ["casual", "formal", "date"]
+    "occasion": ["casual", "formal", "date"],
+    "material": "silk",
+    "popularity": 75,
+    "tags": ["dress", "feminine", "statement"]
   },
   {
     "id": "top-008",
@@ -69,7 +90,10 @@
     "colors": ["black"],
     "style": "casual",
     "season": ["autumn", "winter"],
-    "occasion": ["casual", "business", "date"]
+    "occasion": ["casual", "business", "date"],
+    "material": "knit",
+    "popularity": 85,
+    "tags": ["turtleneck", "sleek", "winter"]
   },
   {
     "id": "top-009",
@@ -78,7 +102,10 @@
     "colors": ["red", "black"],
     "style": "street",
     "season": ["autumn", "winter"],
-    "occasion": ["casual", "date"]
+    "occasion": ["casual", "date"],
+    "material": "cotton",
+    "popularity": 70,
+    "tags": ["plaid", "flannel", "vintage"]
   },
   {
     "id": "top-010",
@@ -87,7 +114,10 @@
     "colors": ["white"],
     "style": "street",
     "season": ["spring", "autumn", "winter"],
-    "occasion": ["casual"]
+    "occasion": ["casual"],
+    "material": "cotton",
+    "popularity": 88,
+    "tags": ["oversized", "streetwear", "baggy"]
   },
   {
     "id": "top-011",
@@ -96,7 +126,10 @@
     "colors": ["green"],
     "style": "street",
     "season": ["spring", "autumn"],
-    "occasion": ["casual", "date"]
+    "occasion": ["casual", "date"],
+    "material": "cotton",
+    "popularity": 75,
+    "tags": ["cargo", "military", "utility"]
   },
   {
     "id": "top-012",
@@ -105,7 +138,10 @@
     "colors": ["blue"],
     "style": "casual",
     "season": ["spring", "summer", "autumn"],
-    "occasion": ["casual", "date"]
+    "occasion": ["casual", "date"],
+    "material": "denim",
+    "popularity": 78,
+    "tags": ["denim", "western", "layered"]
   },
   {
     "id": "top-013",
@@ -114,7 +150,10 @@
     "colors": ["pink"],
     "style": "casual",
     "season": ["spring", "summer"],
-    "occasion": ["casual", "date"]
+    "occasion": ["casual", "date"],
+    "material": "silk",
+    "popularity": 70,
+    "tags": ["camisole", "feminine", "summer"]
   },
   {
     "id": "top-014",
@@ -123,7 +162,10 @@
     "colors": ["navy"],
     "style": "formal",
     "season": ["spring", "autumn", "winter"],
-    "occasion": ["business", "formal", "date"]
+    "occasion": ["business", "formal", "date"],
+    "material": "wool",
+    "popularity": 88,
+    "tags": ["blazer", "navy", "classic"]
   },
   {
     "id": "top-015",
@@ -132,7 +174,10 @@
     "colors": ["black"],
     "style": "sporty",
     "season": ["spring", "autumn", "winter"],
-    "occasion": ["sporty", "casual"]
+    "occasion": ["sporty", "casual"],
+    "material": "polyester",
+    "popularity": 82,
+    "tags": ["athletic", "sportswear", "quick-dry"]
   },
   {
     "id": "bottom-001",
@@ -141,7 +186,10 @@
     "colors": ["blue"],
     "style": "casual",
     "season": ["spring", "summer", "autumn"],
-    "occasion": ["casual", "date"]
+    "occasion": ["casual", "date"],
+    "material": "denim",
+    "popularity": 95,
+    "tags": ["denim", "classic", "all-match"]
   },
   {
     "id": "bottom-002",
@@ -150,7 +198,10 @@
     "colors": ["black"],
     "style": "formal",
     "season": ["spring", "autumn", "winter"],
-    "occasion": ["business", "formal"]
+    "occasion": ["business", "formal"],
+    "material": "cotton",
+    "popularity": 82,
+    "tags": ["chinos", "business-casual", "slim"]
   },
   {
     "id": "bottom-003",
@@ -159,7 +210,10 @@
     "colors": ["khaki"],
     "style": "casual",
     "season": ["summer"],
-    "occasion": ["casual", "sporty"]
+    "occasion": ["casual", "sporty"],
+    "material": "cotton",
+    "popularity": 80,
+    "tags": ["shorts", "summer", "khaki"]
   },
   {
     "id": "bottom-004",
@@ -168,7 +222,10 @@
     "colors": ["black"],
     "style": "sporty",
     "season": ["spring", "autumn", "winter"],
-    "occasion": ["sporty", "casual"]
+    "occasion": ["sporty", "casual"],
+    "material": "polyester",
+    "popularity": 85,
+    "tags": ["sweatpants", "joggers", "comfortable"]
   },
   {
     "id": "bottom-005",
@@ -177,7 +234,10 @@
     "colors": ["gray"],
     "style": "formal",
     "season": ["spring", "autumn", "winter"],
-    "occasion": ["business", "formal"]
+    "occasion": ["business", "formal"],
+    "material": "wool",
+    "popularity": 80,
+    "tags": ["dress-pants", "tailored", "formal"]
   },
   {
     "id": "bottom-006",
@@ -186,7 +246,10 @@
     "colors": ["white"],
     "style": "casual",
     "season": ["spring", "summer"],
-    "occasion": ["casual", "date"]
+    "occasion": ["casual", "date"],
+    "material": "cotton",
+    "popularity": 75,
+    "tags": ["skirt", "mini", "summer"]
   },
   {
     "id": "bottom-007",
@@ -195,7 +258,10 @@
     "colors": ["black"],
     "style": "street",
     "season": ["spring", "autumn"],
-    "occasion": ["casual", "date"]
+    "occasion": ["casual", "date"],
+    "material": "leather",
+    "popularity": 70,
+    "tags": ["leather", "edgy", "night-out"]
   },
   {
     "id": "bottom-008",
@@ -204,7 +270,10 @@
     "colors": ["beige"],
     "style": "casual",
     "season": ["spring", "summer", "autumn"],
-    "occasion": ["casual", "business", "date"]
+    "occasion": ["casual", "business", "date"],
+    "material": "linen",
+    "popularity": 82,
+    "tags": ["wide-leg", "flowy", "elegant"]
   },
   {
     "id": "bottom-009",
@@ -213,7 +282,10 @@
     "colors": ["navy"],
     "style": "casual",
     "season": ["spring", "autumn", "winter"],
-    "occasion": ["casual", "business", "date"]
+    "occasion": ["casual", "business", "date"],
+    "material": "denim",
+    "popularity": 88,
+    "tags": ["skinny", "dark-wash", "slim-fit"]
   },
   {
     "id": "bottom-010",
@@ -222,7 +294,10 @@
     "colors": ["brown", "beige"],
     "style": "casual",
     "season": ["autumn", "winter"],
-    "occasion": ["casual", "date"]
+    "occasion": ["casual", "date"],
+    "material": "wool",
+    "popularity": 72,
+    "tags": ["plaid", "midi", "preppy"]
   },
   {
     "id": "bottom-011",
@@ -231,7 +306,10 @@
     "colors": ["green"],
     "style": "street",
     "season": ["spring", "autumn"],
-    "occasion": ["casual"]
+    "occasion": ["casual"],
+    "material": "cotton",
+    "popularity": 78,
+    "tags": ["cargo", "utility", "streetwear"]
   },
   {
     "id": "bottom-012",
@@ -240,7 +318,10 @@
     "colors": ["black"],
     "style": "sporty",
     "season": ["spring", "summer", "autumn", "winter"],
-    "occasion": ["sporty"]
+    "occasion": ["sporty"],
+    "material": "polyester",
+    "popularity": 85,
+    "tags": ["leggings", "yoga", "stretchy"]
   },
   {
     "id": "shoes-001",
@@ -249,7 +330,10 @@
     "colors": ["white"],
     "style": "sporty",
     "season": ["spring", "summer", "autumn"],
-    "occasion": ["casual", "sporty"]
+    "occasion": ["casual", "sporty"],
+    "material": "leather",
+    "popularity": 95,
+    "tags": ["sneakers", "white-shoes", "all-match"]
   },
   {
     "id": "shoes-002",
@@ -258,7 +342,10 @@
     "colors": ["black"],
     "style": "formal",
     "season": ["spring", "autumn", "winter"],
-    "occasion": ["business", "formal"]
+    "occasion": ["business", "formal"],
+    "material": "leather",
+    "popularity": 75,
+    "tags": ["oxford", "dress-shoes", "formal"]
   },
   {
     "id": "shoes-003",
@@ -267,7 +354,10 @@
     "colors": ["brown"],
     "style": "formal",
     "season": ["spring", "summer", "autumn"],
-    "occasion": ["casual", "business", "date"]
+    "occasion": ["casual", "business", "date"],
+    "material": "leather",
+    "popularity": 80,
+    "tags": ["loafers", "slip-on", "business-casual"]
   },
   {
     "id": "shoes-004",
@@ -276,7 +366,10 @@
     "colors": ["gray"],
     "style": "sporty",
     "season": ["spring", "summer", "autumn"],
-    "occasion": ["sporty"]
+    "occasion": ["sporty"],
+    "material": "polyester",
+    "popularity": 82,
+    "tags": ["running", "athletic", "cushioning"]
   },
   {
     "id": "shoes-005",
@@ -285,7 +378,10 @@
     "colors": ["brown"],
     "style": "casual",
     "season": ["autumn", "winter"],
-    "occasion": ["casual", "date"]
+    "occasion": ["casual", "date"],
+    "material": "leather",
+    "popularity": 78,
+    "tags": ["boots", "leather", "autumn"]
   },
   {
     "id": "shoes-006",
@@ -294,7 +390,10 @@
     "colors": ["black"],
     "style": "formal",
     "season": ["spring", "summer", "autumn", "winter"],
-    "occasion": ["formal", "date"]
+    "occasion": ["formal", "date"],
+    "material": "leather",
+    "popularity": 75,
+    "tags": ["heels", "pumps", "elegant"]
   },
   {
     "id": "shoes-007",
@@ -303,7 +402,10 @@
     "colors": ["beige", "white"],
     "style": "casual",
     "season": ["spring", "summer", "autumn"],
-    "occasion": ["casual", "date"]
+    "occasion": ["casual", "date"],
+    "material": "cotton",
+    "popularity": 85,
+    "tags": ["canvas", "low-top", "casual"]
   },
   {
     "id": "shoes-008",
@@ -312,7 +414,10 @@
     "colors": ["black"],
     "style": "street",
     "season": ["autumn", "winter"],
-    "occasion": ["casual", "date"]
+    "occasion": ["casual", "date"],
+    "material": "leather",
+    "popularity": 80,
+    "tags": ["combat", "platform", "punk"]
   },
   {
     "id": "shoes-009",
@@ -321,7 +426,10 @@
     "colors": ["white", "gray"],
     "style": "street",
     "season": ["spring", "summer", "autumn"],
-    "occasion": ["casual"]
+    "occasion": ["casual"],
+    "material": "leather",
+    "popularity": 88,
+    "tags": ["chunky", "dad-shoes", "retro"]
   },
   {
     "id": "shoes-010",
@@ -330,7 +438,10 @@
     "colors": ["navy"],
     "style": "casual",
     "season": ["spring", "summer"],
-    "occasion": ["casual", "business"]
+    "occasion": ["casual", "business"],
+    "material": "leather",
+    "popularity": 72,
+    "tags": ["boat-shoes", "preppy", "nautical"]
   },
   {
     "id": "shoes-011",
@@ -339,7 +450,10 @@
     "colors": ["black"],
     "style": "sporty",
     "season": ["spring", "summer", "autumn", "winter"],
-    "occasion": ["sporty", "casual"]
+    "occasion": ["sporty", "casual"],
+    "material": "polyester",
+    "popularity": 85,
+    "tags": ["running", "black", "breathable"]
   },
   {
     "id": "acc-001",
@@ -348,7 +462,10 @@
     "colors": ["silver"],
     "style": "formal",
     "season": ["spring", "summer", "autumn", "winter"],
-    "occasion": ["business", "formal", "casual"]
+    "occasion": ["business", "formal", "casual"],
+    "material": "cotton",
+    "popularity": 85,
+    "tags": ["watch", "minimalist", "metal"]
   },
   {
     "id": "acc-002",
@@ -357,7 +474,10 @@
     "colors": ["black"],
     "style": "sporty",
     "season": ["spring", "summer", "autumn"],
-    "occasion": ["casual", "sporty"]
+    "occasion": ["casual", "sporty"],
+    "material": "cotton",
+    "popularity": 88,
+    "tags": ["cap", "baseball", "street"]
   },
   {
     "id": "acc-003",
@@ -366,7 +486,10 @@
     "colors": ["navy"],
     "style": "casual",
     "season": ["spring", "summer", "autumn"],
-    "occasion": ["casual"]
+    "occasion": ["casual"],
+    "material": "cotton",
+    "popularity": 85,
+    "tags": ["backpack", "canvas", "everyday"]
   },
   {
     "id": "acc-004",
@@ -375,7 +498,10 @@
     "colors": ["gold"],
     "style": "formal",
     "season": ["spring", "summer", "autumn", "winter"],
-    "occasion": ["formal", "date", "casual"]
+    "occasion": ["formal", "date", "casual"],
+    "material": "cotton",
+    "popularity": 78,
+    "tags": ["necklace", "delicate", "gold"]
   },
   {
     "id": "acc-005",
@@ -384,7 +510,10 @@
     "colors": ["brown"],
     "style": "casual",
     "season": ["spring", "summer", "autumn", "winter"],
-    "occasion": ["casual", "business"]
+    "occasion": ["casual", "business"],
+    "material": "leather",
+    "popularity": 80,
+    "tags": ["belt", "leather", "classic"]
   },
   {
     "id": "acc-006",
@@ -393,7 +522,10 @@
     "colors": ["black"],
     "style": "casual",
     "season": ["spring", "summer", "autumn", "winter"],
-    "occasion": ["casual", "business", "date"]
+    "occasion": ["casual", "business", "date"],
+    "material": "leather",
+    "popularity": 88,
+    "tags": ["tote", "bag", "large-capacity"]
   },
   {
     "id": "acc-007",
@@ -402,7 +534,10 @@
     "colors": ["beige"],
     "style": "casual",
     "season": ["autumn", "winter"],
-    "occasion": ["casual", "date"]
+    "occasion": ["casual", "date"],
+    "material": "knit",
+    "popularity": 75,
+    "tags": ["scarf", "knit", "warm"]
   },
   {
     "id": "acc-008",
@@ -411,7 +546,10 @@
     "colors": ["black"],
     "style": "street",
     "season": ["spring", "summer"],
-    "occasion": ["casual", "date"]
+    "occasion": ["casual", "date"],
+    "material": "cotton",
+    "popularity": 82,
+    "tags": ["sunglasses", "shades", "summer"]
   },
   {
     "id": "acc-009",
@@ -420,7 +558,10 @@
     "colors": ["red"],
     "style": "formal",
     "season": ["spring", "summer", "autumn", "winter"],
-    "occasion": ["formal", "date"]
+    "occasion": ["formal", "date"],
+    "material": "leather",
+    "popularity": 72,
+    "tags": ["handbag", "statement", "evening"]
   },
   {
     "id": "acc-010",
@@ -429,6 +570,9 @@
     "colors": ["gray"],
     "style": "sporty",
     "season": ["spring", "summer", "autumn", "winter"],
-    "occasion": ["sporty", "casual"]
+    "occasion": ["sporty", "casual"],
+    "material": "polyester",
+    "popularity": 80,
+    "tags": ["backpack", "gym", "sporty"]
   }
 ]

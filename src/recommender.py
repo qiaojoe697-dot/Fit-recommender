@@ -20,11 +20,12 @@ def load_items() -> List[ClothingItem]:
         raw = json.load(f)
     items = []
     for item_data in raw:
-        # 兼容旧数据：tags 字段可能不存在
+        # 兼容旧数据：新字段可能不存在
         item_data.setdefault("tags", [])
+        item_data.setdefault("material", "cotton")
+        item_data.setdefault("popularity", 50)
         items.append(ClothingItem(**item_data))
     return items
-
 
 def filter_items(
     items: List[ClothingItem], pref: UserPreference

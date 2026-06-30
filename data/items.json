@@ -8,8 +8,8 @@
     "season": ["spring", "summer", "autumn"],
     "occasion": ["casual", "sporty"],
     "material": "cotton",
-    "popularity": 95,
-    "tags": ["基础款", "百搭", "日常"]
+    "fit": "regular",
+    "popularity": 95
   },
   {
     "id": "top-002",
@@ -20,8 +20,8 @@
     "season": ["spring", "summer"],
     "occasion": ["casual", "business"],
     "material": "cotton",
-    "popularity": 80,
-    "tags": ["条纹", "商务休闲", "清新"]
+    "fit": "regular",
+    "popularity": 80
   },
   {
     "id": "top-003",
@@ -32,8 +32,8 @@
     "season": ["spring", "autumn", "winter"],
     "occasion": ["business", "formal"],
     "material": "wool",
-    "popularity": 85,
-    "tags": ["西装", "剪裁", "专业"]
+    "fit": "slim",
+    "popularity": 85
   },
   {
     "id": "top-004",
@@ -44,8 +44,8 @@
     "season": ["autumn", "winter"],
     "occasion": ["casual", "sporty"],
     "material": "cotton",
-    "popularity": 90,
-    "tags": ["连帽", "舒适", "居家"]
+    "fit": "regular",
+    "popularity": 90
   },
   {
     "id": "top-005",
@@ -56,8 +56,8 @@
     "season": ["autumn", "winter"],
     "occasion": ["casual", "business"],
     "material": "knit",
-    "popularity": 80,
-    "tags": ["针织", "温暖", "极简"]
+    "fit": "regular",
+    "popularity": 80
   },
   {
     "id": "top-006",
@@ -68,8 +68,8 @@
     "season": ["spring", "summer", "autumn", "winter"],
     "occasion": ["business", "formal"],
     "material": "cotton",
-    "popularity": 90,
-    "tags": ["正装", "必备", "商务"]
+    "fit": "slim",
+    "popularity": 90
   },
   {
     "id": "top-007",
@@ -80,8 +80,8 @@
     "season": ["spring", "summer"],
     "occasion": ["casual", "formal", "date"],
     "material": "silk",
-    "popularity": 75,
-    "tags": ["连衣裙", "柔美", "亮点"]
+    "fit": "slim",
+    "popularity": 75
   },
   {
     "id": "top-008",
@@ -92,8 +92,8 @@
     "season": ["autumn", "winter"],
     "occasion": ["casual", "business", "date"],
     "material": "knit",
-    "popularity": 85,
-    "tags": ["高领", "干练", "冬季"]
+    "fit": "slim",
+    "popularity": 85
   },
   {
     "id": "top-009",
@@ -104,8 +104,8 @@
     "season": ["autumn", "winter"],
     "occasion": ["casual", "date"],
     "material": "cotton",
-    "popularity": 70,
-    "tags": ["格纹", "复古", "街头"]
+    "fit": "oversized",
+    "popularity": 70
   },
   {
     "id": "top-010",
@@ -116,8 +116,8 @@
     "season": ["spring", "autumn", "winter"],
     "occasion": ["casual"],
     "material": "cotton",
-    "popularity": 88,
-    "tags": ["宽松", "街头", "休闲"]
+    "fit": "oversized",
+    "popularity": 88
   },
   {
     "id": "top-011",
@@ -128,8 +128,8 @@
     "season": ["spring", "autumn"],
     "occasion": ["casual", "date"],
     "material": "cotton",
-    "popularity": 75,
-    "tags": ["工装", "军装", "实用"]
+    "fit": "regular",
+    "popularity": 75
   },
   {
     "id": "top-012",
@@ -140,8 +140,8 @@
     "season": ["spring", "summer", "autumn"],
     "occasion": ["casual", "date"],
     "material": "denim",
-    "popularity": 78,
-    "tags": ["牛仔", "休闲", "叠穿"]
+    "fit": "regular",
+    "popularity": 78
   },
   {
     "id": "top-013",
@@ -152,8 +152,8 @@
     "season": ["spring", "summer"],
     "occasion": ["casual", "date"],
     "material": "silk",
-    "popularity": 70,
-    "tags": ["吊带", "柔美", "夏季"]
+    "fit": "slim",
+    "popularity": 70
   },
   {
     "id": "top-014",
@@ -164,8 +164,8 @@
     "season": ["spring", "autumn", "winter"],
     "occasion": ["business", "formal", "date"],
     "material": "wool",
-    "popularity": 88,
-    "tags": ["西装", "经典", "商务"]
+    "fit": "slim",
+    "popularity": 88
   },
   {
     "id": "top-015",
@@ -176,8 +176,8 @@
     "season": ["spring", "autumn", "winter"],
     "occasion": ["sporty", "casual"],
     "material": "polyester",
-    "popularity": 82,
-    "tags": ["运动", "速干", "舒适"]
+    "fit": "regular",
+    "popularity": 82
   },
   {
     "id": "bottom-001",
@@ -188,8 +188,8 @@
     "season": ["spring", "summer", "autumn"],
     "occasion": ["casual", "date"],
     "material": "denim",
-    "popularity": 95,
-    "tags": ["牛仔", "经典", "百搭"]
+    "fit": "regular",
+    "popularity": 95
   },
   {
     "id": "bottom-002",
@@ -200,8 +200,8 @@
     "season": ["spring", "autumn", "winter"],
     "occasion": ["business", "formal"],
     "material": "cotton",
-    "popularity": 82,
-    "tags": ["休闲裤", "商务休闲", "修身"]
+    "fit": "slim",
+    "popularity": 82
   },
   {
     "id": "bottom-003",
@@ -212,8 +212,8 @@
     "season": ["summer"],
     "occasion": ["casual", "sporty"],
     "material": "cotton",
-    "popularity": 80,
-    "tags": ["短裤", "夏季", "休闲"]
+    "fit": "regular",
+    "popularity": 80
   },
   {
     "id": "bottom-004",
@@ -224,8 +224,8 @@
     "season": ["spring", "autumn", "winter"],
     "occasion": ["sporty", "casual"],
     "material": "polyester",
-    "popularity": 85,
-    "tags": ["运动裤", "舒适", "休闲"]
+    "fit": "regular",
+    "popularity": 85
   },
   {
     "id": "bottom-005",
@@ -236,8 +236,8 @@
     "season": ["spring", "autumn", "winter"],
     "occasion": ["business", "formal"],
     "material": "wool",
-    "popularity": 80,
-    "tags": ["西裤", "正式", "剪裁"]
+    "fit": "slim",
+    "popularity": 80
   },
   {
     "id": "bottom-006",
@@ -248,8 +248,8 @@
     "season": ["spring", "summer"],
     "occasion": ["casual", "date"],
     "material": "cotton",
-    "popularity": 75,
-    "tags": ["半裙", "夏季", "清新"]
+    "fit": "regular",
+    "popularity": 75
   },
   {
     "id": "bottom-007",
@@ -260,8 +260,8 @@
     "season": ["spring", "autumn"],
     "occasion": ["casual", "date"],
     "material": "leather",
-    "popularity": 70,
-    "tags": ["皮质", "前卫", "街头"]
+    "fit": "slim",
+    "popularity": 70
   },
   {
     "id": "bottom-008",
@@ -272,8 +272,8 @@
     "season": ["spring", "summer", "autumn"],
     "occasion": ["casual", "business", "date"],
     "material": "linen",
-    "popularity": 82,
-    "tags": ["阔腿", "飘逸", "优雅"]
+    "fit": "wide-leg",
+    "popularity": 82
   },
   {
     "id": "bottom-009",
@@ -284,8 +284,8 @@
     "season": ["spring", "autumn", "winter"],
     "occasion": ["casual", "business", "date"],
     "material": "denim",
-    "popularity": 88,
-    "tags": ["牛仔", "修身", "深色"]
+    "fit": "skinny",
+    "popularity": 88
   },
   {
     "id": "bottom-010",
@@ -296,8 +296,8 @@
     "season": ["autumn", "winter"],
     "occasion": ["casual", "date"],
     "material": "wool",
-    "popularity": 72,
-    "tags": ["格纹", "学院", "复古"]
+    "fit": "regular",
+    "popularity": 72
   },
   {
     "id": "bottom-011",
@@ -308,8 +308,8 @@
     "season": ["spring", "autumn"],
     "occasion": ["casual"],
     "material": "cotton",
-    "popularity": 78,
-    "tags": ["工装", "街头", "实用"]
+    "fit": "regular",
+    "popularity": 78
   },
   {
     "id": "bottom-012",
@@ -320,8 +320,8 @@
     "season": ["spring", "summer", "autumn", "winter"],
     "occasion": ["sporty"],
     "material": "polyester",
-    "popularity": 85,
-    "tags": ["瑜伽", "弹力", "运动"]
+    "fit": "skinny",
+    "popularity": 85
   },
   {
     "id": "shoes-001",
@@ -332,8 +332,8 @@
     "season": ["spring", "summer", "autumn"],
     "occasion": ["casual", "sporty"],
     "material": "leather",
-    "popularity": 95,
-    "tags": ["运动鞋", "白鞋", "百搭"]
+    "fit": "regular",
+    "popularity": 95
   },
   {
     "id": "shoes-002",
@@ -344,8 +344,8 @@
     "season": ["spring", "autumn", "winter"],
     "occasion": ["business", "formal"],
     "material": "leather",
-    "popularity": 75,
-    "tags": ["牛津", "正装", "皮质"]
+    "fit": "regular",
+    "popularity": 75
   },
   {
     "id": "shoes-003",
@@ -356,8 +356,8 @@
     "season": ["spring", "summer", "autumn"],
     "occasion": ["casual", "business", "date"],
     "material": "leather",
-    "popularity": 80,
-    "tags": ["乐福鞋", "商务休闲", "皮质"]
+    "fit": "regular",
+    "popularity": 80
   },
   {
     "id": "shoes-004",
@@ -368,8 +368,8 @@
     "season": ["spring", "summer", "autumn"],
     "occasion": ["sporty"],
     "material": "polyester",
-    "popularity": 82,
-    "tags": ["跑步", "运动", "缓震"]
+    "fit": "regular",
+    "popularity": 82
   },
   {
     "id": "shoes-005",
@@ -380,8 +380,8 @@
     "season": ["autumn", "winter"],
     "occasion": ["casual", "date"],
     "material": "leather",
-    "popularity": 78,
-    "tags": ["靴子", "皮质", "秋季"]
+    "fit": "regular",
+    "popularity": 78
   },
   {
     "id": "shoes-006",
@@ -392,8 +392,8 @@
     "season": ["spring", "summer", "autumn", "winter"],
     "occasion": ["formal", "date"],
     "material": "leather",
-    "popularity": 75,
-    "tags": ["高跟", "优雅", "正式"]
+    "fit": "regular",
+    "popularity": 75
   },
   {
     "id": "shoes-007",
@@ -404,8 +404,8 @@
     "season": ["spring", "summer", "autumn"],
     "occasion": ["casual", "date"],
     "material": "cotton",
-    "popularity": 85,
-    "tags": ["帆布", "休闲", "低帮"]
+    "fit": "regular",
+    "popularity": 85
   },
   {
     "id": "shoes-008",
@@ -416,8 +416,8 @@
     "season": ["autumn", "winter"],
     "occasion": ["casual", "date"],
     "material": "leather",
-    "popularity": 80,
-    "tags": ["马丁", "厚底", "街头"]
+    "fit": "regular",
+    "popularity": 80
   },
   {
     "id": "shoes-009",
@@ -428,8 +428,8 @@
     "season": ["spring", "summer", "autumn"],
     "occasion": ["casual"],
     "material": "leather",
-    "popularity": 88,
-    "tags": ["老爹鞋", "厚底", "复古"]
+    "fit": "regular",
+    "popularity": 88
   },
   {
     "id": "shoes-010",
@@ -440,8 +440,8 @@
     "season": ["spring", "summer"],
     "occasion": ["casual", "business"],
     "material": "leather",
-    "popularity": 72,
-    "tags": ["帆船鞋", "学院", "休闲"]
+    "fit": "regular",
+    "popularity": 72
   },
   {
     "id": "shoes-011",
@@ -452,8 +452,8 @@
     "season": ["spring", "summer", "autumn", "winter"],
     "occasion": ["sporty", "casual"],
     "material": "polyester",
-    "popularity": 85,
-    "tags": ["跑步", "运动", "透气"]
+    "fit": "regular",
+    "popularity": 85
   },
   {
     "id": "acc-001",
@@ -464,8 +464,8 @@
     "season": ["spring", "summer", "autumn", "winter"],
     "occasion": ["business", "formal", "casual"],
     "material": "cotton",
-    "popularity": 85,
-    "tags": ["手表", "极简", "金属"]
+    "fit": "regular",
+    "popularity": 85
   },
   {
     "id": "acc-002",
@@ -476,8 +476,8 @@
     "season": ["spring", "summer", "autumn"],
     "occasion": ["casual", "sporty"],
     "material": "cotton",
-    "popularity": 88,
-    "tags": ["棒球帽", "街头", "休闲"]
+    "fit": "regular",
+    "popularity": 88
   },
   {
     "id": "acc-003",
@@ -488,8 +488,8 @@
     "season": ["spring", "summer", "autumn"],
     "occasion": ["casual"],
     "material": "cotton",
-    "popularity": 85,
-    "tags": ["背包", "帆布", "日常"]
+    "fit": "regular",
+    "popularity": 85
   },
   {
     "id": "acc-004",
@@ -500,8 +500,8 @@
     "season": ["spring", "summer", "autumn", "winter"],
     "occasion": ["formal", "date", "casual"],
     "material": "cotton",
-    "popularity": 78,
-    "tags": ["项链", "精致", "金色"]
+    "fit": "regular",
+    "popularity": 78
   },
   {
     "id": "acc-005",
@@ -512,8 +512,8 @@
     "season": ["spring", "summer", "autumn", "winter"],
     "occasion": ["casual", "business"],
     "material": "leather",
-    "popularity": 80,
-    "tags": ["腰带", "皮质", "经典"]
+    "fit": "regular",
+    "popularity": 80
   },
   {
     "id": "acc-006",
@@ -524,8 +524,8 @@
     "season": ["spring", "summer", "autumn", "winter"],
     "occasion": ["casual", "business", "date"],
     "material": "leather",
-    "popularity": 88,
-    "tags": ["托特包", "大容量", "通勤"]
+    "fit": "regular",
+    "popularity": 88
   },
   {
     "id": "acc-007",
@@ -536,8 +536,8 @@
     "season": ["autumn", "winter"],
     "occasion": ["casual", "date"],
     "material": "knit",
-    "popularity": 75,
-    "tags": ["围巾", "针织", "保暖"]
+    "fit": "regular",
+    "popularity": 75
   },
   {
     "id": "acc-008",
@@ -548,8 +548,8 @@
     "season": ["spring", "summer"],
     "occasion": ["casual", "date"],
     "material": "cotton",
-    "popularity": 82,
-    "tags": ["太阳镜", "街头", "夏季"]
+    "fit": "regular",
+    "popularity": 82
   },
   {
     "id": "acc-009",
@@ -560,8 +560,8 @@
     "season": ["spring", "summer", "autumn", "winter"],
     "occasion": ["formal", "date"],
     "material": "leather",
-    "popularity": 72,
-    "tags": ["手提包", "亮点", "晚宴"]
+    "fit": "regular",
+    "popularity": 72
   },
   {
     "id": "acc-010",
@@ -572,7 +572,7 @@
     "season": ["spring", "summer", "autumn", "winter"],
     "occasion": ["sporty", "casual"],
     "material": "polyester",
-    "popularity": 80,
-    "tags": ["背包", "运动", "健身"]
+    "fit": "regular",
+    "popularity": 80
   }
 ]

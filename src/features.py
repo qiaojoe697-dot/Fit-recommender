@@ -171,26 +171,65 @@ def style_compatibility_score(style1: str, style2: str) -> float:
 
 def compute_item_score(item: ClothingItem, pref: UserPreference) -> float:
     """
-    计算单件衣物与用户偏好的匹配分。
-
+    计算单件衣物与用户偏好的匹配分（7维加权打分）。
     权重说明：
-      style   ×2.5  风格最重要，决定整体气质
-      occasion ×2.0  场合必须匹配
-      season   ×1.0  季节匹配
-      color    ×1.5  颜色偏好（比原来更重要）
+      style      ×2.5  风格最重要，决定整体气质
+      occasion   ×2.0  场合必须匹配
+      season     ×1.5  季节匹配
+      color      ×1.5  颜色偏好
+      material   ×1.0  材质季节适配
+      tags       ×1.0  语义标签匹配
+      popularity ×0.5  热门度参考
     """
     score = 0.0
-
+    
     # 风格精确匹配 (权重 2.5)
     score += _match_score(item.style, pref.style) * 2.5
-
+    
     # 场合匹配 (权重 2.0)
     score += _overlap_score(item.occasion, pref.occasion) * 2.0
-
-    # 季节匹配 (权重 1.0)
-    score += _overlap_score(item.season, pref.season) * 1.0
-
+    
+    # 季节匹配 (权重 1.5)
+    score += _overlap_score(item.season, pref.season) * 1.5
+    
     # 颜色偏好匹配 (权重 1.5)
     score += best_color_match(item.colors, pref.color_preference) * 1.5
-
+    
+    # 材质季节适配 (权重 1.0) —— 新增
+    score += material_season_fit(item.material, pref.season) * 1.0
+    
+    # 标签匹配 (权重 1.0) —— 新增
+    score += tag_match_score(item.tags, pref.tag_preferences) * 1.0
+    
+    # 热门度 (权重 0.5) —— 新增，归一化到 [0,1]
+    score += (item.popularity / 100.0) * 0.5
+    
     return score
+# ---------------------------------------------------------------------------
+# 材质-季节适配度（新增维度）
+# 轻薄材质适合夏天，厚重材质适合冬天
+# ---------------------------------------------------------------------------
+_MATERIAL_SEASON_FIT: Dict[str, Dict[str, float]] = {
+    "cotton":   {"spring": 0.9, "summer": 1.0, "autumn": 0.8, "winter": 0.5},
+    "linen":    {"spring": 0.8, "summer": 1.0, "autumn": 0.5, "winter": 0.2},
+    "wool":     {"spring": 0.5, "summer": 0.2, "autumn": 0.8, "winter": 1.0},
+    "knit":     {"spring": 0.6, "summer": 0.3, "autumn": 0.9, "winter": 1.0},
+    "denim":    {"spring": 0.9, "summer": 0.7, "autumn": 0.9, "winter": 0.6},
+    "leather":  {"spring": 0.6, "summer": 0.3, "autumn": 0.8, "winter": 0.9},
+    "silk":     {"spring": 0.8, "summer": 1.0, "autumn": 0.6, "winter": 0.3},
+    "polyester":{"spring": 0.8, "summer": 0.9, "autumn": 0.7, "winter": 0.5},
+}
+
+def material_season_fit(material: str, season: str) -> float:
+    """材质与季节的适配度 [0, 1]"""
+    row = _MATERIAL_SEASON_FIT.get(material, {})
+    return row.get(season, 0.6)  # 未知材质给中性分
+
+def tag_match_score(item_tags: List[str], pref_tags: List[str]) -> float:
+    """标签匹配度：重合标签数 / 用户偏好标签数"""
+    if not pref_tags:
+        return 0.5  # 无偏好标签时给中性分
+    if not item_tags:
+        return 0.0
+    overlap = len(set(item_tags) & set(pref_tags))
+    return overlap / len(pref_tags)

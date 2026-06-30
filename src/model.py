@@ -82,11 +82,12 @@ class UserProfile:
 class ClothingItem:
     """
     单件衣物数据（来自 data/items.json）
-
     category : top / bottom / shoes / accessory
     style    : casual / formal / sporty / street
     season   : 适用季节列表，如 ["spring", "summer"]
     occasion : 适用场合列表，如 ["casual", "date"]
+    material : 材质，如 cotton/wool/denim/leather 等
+    popularity : 热门度分数
     tags     : 可选语义标签列表，如 ["oversized"]
     """
     id: str
@@ -96,8 +97,9 @@ class ClothingItem:
     style: str
     season: List[str]
     occasion: List[str]
-    tags: List[str] = field(default_factory=list)
-
+    material: str = "cotton"  # 新增：材质，默认棉质
+    popularity: int = 50      # 新增：热门度，默认50
+    tags: List[str] = field(default_factory=list)@dataclass
     def tag_set(self) -> Set[str]:
         """返回该单品所有语义标签的集合"""
         return set(self.tags) | {self.style} | set(self.season) | set(self.occasion)
@@ -114,10 +116,11 @@ class Outfit:
 
 @dataclass
 class UserPreference:
-    """单品搭配推荐的查询条件（CLI / Tab1 使用）"""
+    """单品搭配推荐的查询条件"""
     season: str
     occasion: str
     style: str
     color_preference: Optional[str] = None
+    tag_preferences: List[str] = field(default_factory=list)  # 新增：用户偏好标签
     top_n: int = 3
-    gender: Optional[str] = None  # 预留字段，供未来扩展
+    gender: Optional[str] = None

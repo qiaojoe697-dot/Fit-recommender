@@ -1,6 +1,5 @@
 """
 model.py — 全系统数据结构定义
-
 对应文档「二、用户画像构成」数据模型：
   - OutfitRecord   : 穿搭记录（来自 JSON 数据库）
   - UserBehavior   : 用户行为记录（浏览/收藏），用于构建隐式画像
@@ -10,18 +9,15 @@ model.py — 全系统数据结构定义
   - UserPreference : 单品搭配推荐的查询条件
 """
 from __future__ import annotations
-
 from dataclasses import dataclass, field
 from typing import List, Optional, Set
 
 
 # ── 穿搭库相关 ────────────────────────────────────────────────────────────────
-
 @dataclass
 class OutfitRecord:
     """
     穿搭记录（来自 data/outfits.json 或外部 API）
-
     对应文档「一、数据表搭建」的穿搭表字段：
       id         : 穿搭唯一标识
       name       : 穿搭名称
@@ -39,12 +35,10 @@ class OutfitRecord:
 
 
 # ── 用户行为 & 画像 ───────────────────────────────────────────────────────────
-
 @dataclass
 class UserBehavior:
     """
     用户行为记录（对应文档「一、步骤2」的数据埋点）
-
     action : "view"（浏览）/ "like"（收藏）
     weight : 行为权重倍数（默认 1.0，外部可覆盖）
     """
@@ -57,7 +51,6 @@ class UserBehavior:
 class UserProfile:
     """
     完整用户画像（对应文档「二、用户画像构成」）
-
     explicit_tags : 用户主动勾选的标签（显式画像）
     implicit_tags : 从浏览/收藏行为中挖掘的高频标签（隐式画像）
     merged_tags   : 两者取并集去重，作为最终相似度计算输入
@@ -77,7 +70,6 @@ class UserProfile:
 
 
 # ── 单品搭配推荐相关 ──────────────────────────────────────────────────────────
-
 @dataclass
 class ClothingItem:
     """
@@ -87,8 +79,8 @@ class ClothingItem:
     season   : 适用季节列表，如 ["spring", "summer"]
     occasion : 适用场合列表，如 ["casual", "date"]
     material : 材质，如 cotton/wool/denim/leather 等
+    fit      : 版型，如 oversized/slim/regular/wide-leg 等
     popularity : 热门度分数
-    tags     : 可选语义标签列表，如 ["oversized"]
     """
     id: str
     name: str
@@ -97,12 +89,13 @@ class ClothingItem:
     style: str
     season: List[str]
     occasion: List[str]
-    material: str = "cotton"  # 新增：材质，默认棉质
-    popularity: int = 50      # 新增：热门度，默认50
-    tags: List[str] = field(default_factory=list)
-    def tag_set(self) -> Set[str]:
-        """返回该单品所有语义标签的集合"""
-        return set(self.tags) | {self.style} | set(self.season) | set(self.occasion)
+    material: str = "cotton"      # 材质，默认棉质
+    fit: str = "regular"          # 版型，默认常规
+    popularity: int = 50          # 热门度，默认50
+
+    def feature_set(self) -> Set[str]:
+        """返回该单品所有特征的集合（风格+季节+场合+版型）"""
+        return {self.style, self.fit} | set(self.season) | set(self.occasion)
 
 
 @dataclass
@@ -121,6 +114,6 @@ class UserPreference:
     occasion: str
     style: str
     color_preference: Optional[str] = None
-    tag_preferences: List[str] = field(default_factory=list)  # 新增：用户偏好标签
+    fit_preference: Optional[str] = None  # 版型偏好（新增，替代标签）
     top_n: int = 3
     gender: Optional[str] = None

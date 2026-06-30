@@ -21,8 +21,8 @@ def load_items() -> List[ClothingItem]:
     items = []
     for item_data in raw:
         # 兼容旧数据：新字段可能不存在
-        item_data.setdefault("tags", [])
         item_data.setdefault("material", "cotton")
+        item_data.setdefault("fit", "regular")
         item_data.setdefault("popularity", 50)
         items.append(ClothingItem(**item_data))
     return items

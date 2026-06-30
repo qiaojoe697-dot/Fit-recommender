@@ -99,7 +99,7 @@ class ClothingItem:
     occasion: List[str]
     material: str = "cotton"  # 新增：材质，默认棉质
     popularity: int = 50      # 新增：热门度，默认50
-    tags: List[str] = field(default_factory=list)@dataclass
+    tags: List[str] = field(default_factory=list)
     def tag_set(self) -> Set[str]:
         """返回该单品所有语义标签的集合"""
         return set(self.tags) | {self.style} | set(self.season) | set(self.occasion)

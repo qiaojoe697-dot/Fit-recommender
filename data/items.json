@@ -9,7 +9,7 @@
     "occasion": ["casual", "sporty"],
     "material": "cotton",
     "popularity": 95,
-    "tags": ["basic", "versatile", "everyday"]
+    "tags": ["基础款", "百搭", "日常"]
   },
   {
     "id": "top-002",
@@ -21,7 +21,7 @@
     "occasion": ["casual", "business"],
     "material": "cotton",
     "popularity": 80,
-    "tags": ["striped", "business-casual", "fresh"]
+    "tags": ["条纹", "商务休闲", "清新"]
   },
   {
     "id": "top-003",
@@ -33,7 +33,7 @@
     "occasion": ["business", "formal"],
     "material": "wool",
     "popularity": 85,
-    "tags": ["blazer", "tailored", "professional"]
+    "tags": ["西装", "剪裁", "专业"]
   },
   {
     "id": "top-004",
@@ -45,7 +45,7 @@
     "occasion": ["casual", "sporty"],
     "material": "cotton",
     "popularity": 90,
-    "tags": ["hoodie", "comfortable", "loungewear"]
+    "tags": ["连帽", "舒适", "居家"]
   },
   {
     "id": "top-005",
@@ -57,7 +57,7 @@
     "occasion": ["casual", "business"],
     "material": "knit",
     "popularity": 80,
-    "tags": ["knitwear", "cozy", "minimalist"]
+    "tags": ["针织", "温暖", "极简"]
   },
   {
     "id": "top-006",
@@ -69,7 +69,7 @@
     "occasion": ["business", "formal"],
     "material": "cotton",
     "popularity": 90,
-    "tags": ["dress-shirt", "formal", "must-have"]
+    "tags": ["正装", "必备", "商务"]
   },
   {
     "id": "top-007",
@@ -81,7 +81,7 @@
     "occasion": ["casual", "formal", "date"],
     "material": "silk",
     "popularity": 75,
-    "tags": ["dress", "feminine", "statement"]
+    "tags": ["连衣裙", "柔美", "亮点"]
   },
   {
     "id": "top-008",
@@ -93,7 +93,7 @@
     "occasion": ["casual", "business", "date"],
     "material": "knit",
     "popularity": 85,
-    "tags": ["turtleneck", "sleek", "winter"]
+    "tags": ["高领", "干练", "冬季"]
   },
   {
     "id": "top-009",
@@ -105,7 +105,7 @@
     "occasion": ["casual", "date"],
     "material": "cotton",
     "popularity": 70,
-    "tags": ["plaid", "flannel", "vintage"]
+    "tags": ["格纹", "复古", "街头"]
   },
   {
     "id": "top-010",
@@ -117,7 +117,7 @@
     "occasion": ["casual"],
     "material": "cotton",
     "popularity": 88,
-    "tags": ["oversized", "streetwear", "baggy"]
+    "tags": ["宽松", "街头", "休闲"]
   },
   {
     "id": "top-011",
@@ -129,7 +129,7 @@
     "occasion": ["casual", "date"],
     "material": "cotton",
     "popularity": 75,
-    "tags": ["cargo", "military", "utility"]
+    "tags": ["工装", "军装", "实用"]
   },
   {
     "id": "top-012",
@@ -141,7 +141,7 @@
     "occasion": ["casual", "date"],
     "material": "denim",
     "popularity": 78,
-    "tags": ["denim", "western", "layered"]
+    "tags": ["牛仔", "休闲", "叠穿"]
   },
   {
     "id": "top-013",
@@ -153,7 +153,7 @@
     "occasion": ["casual", "date"],
     "material": "silk",
     "popularity": 70,
-    "tags": ["camisole", "feminine", "summer"]
+    "tags": ["吊带", "柔美", "夏季"]
   },
   {
     "id": "top-014",
@@ -165,7 +165,7 @@
     "occasion": ["business", "formal", "date"],
     "material": "wool",
     "popularity": 88,
-    "tags": ["blazer", "navy", "classic"]
+    "tags": ["西装", "经典", "商务"]
   },
   {
     "id": "top-015",
@@ -177,7 +177,7 @@
     "occasion": ["sporty", "casual"],
     "material": "polyester",
     "popularity": 82,
-    "tags": ["athletic", "sportswear", "quick-dry"]
+    "tags": ["运动", "速干", "舒适"]
   },
   {
     "id": "bottom-001",
@@ -189,7 +189,7 @@
     "occasion": ["casual", "date"],
     "material": "denim",
     "popularity": 95,
-    "tags": ["denim", "classic", "all-match"]
+    "tags": ["牛仔", "经典", "百搭"]
   },
   {
     "id": "bottom-002",
@@ -201,7 +201,7 @@
     "occasion": ["business", "formal"],
     "material": "cotton",
     "popularity": 82,
-    "tags": ["chinos", "business-casual", "slim"]
+    "tags": ["休闲裤", "商务休闲", "修身"]
   },
   {
     "id": "bottom-003",
@@ -213,7 +213,7 @@
     "occasion": ["casual", "sporty"],
     "material": "cotton",
     "popularity": 80,
-    "tags": ["shorts", "summer", "khaki"]
+    "tags": ["短裤", "夏季", "休闲"]
   },
   {
     "id": "bottom-004",
@@ -225,7 +225,7 @@
     "occasion": ["sporty", "casual"],
     "material": "polyester",
     "popularity": 85,
-    "tags": ["sweatpants", "joggers", "comfortable"]
+    "tags": ["运动裤", "舒适", "休闲"]
   },
   {
     "id": "bottom-005",
@@ -237,7 +237,7 @@
     "occasion": ["business", "formal"],
     "material": "wool",
     "popularity": 80,
-    "tags": ["dress-pants", "tailored", "formal"]
+    "tags": ["西裤", "正式", "剪裁"]
   },
   {
     "id": "bottom-006",
@@ -249,7 +249,7 @@
     "occasion": ["casual", "date"],
     "material": "cotton",
     "popularity": 75,
-    "tags": ["skirt", "mini", "summer"]
+    "tags": ["半裙", "夏季", "清新"]
   },
   {
     "id": "bottom-007",
@@ -261,7 +261,7 @@
     "occasion": ["casual", "date"],
     "material": "leather",
     "popularity": 70,
-    "tags": ["leather", "edgy", "night-out"]
+    "tags": ["皮质", "前卫", "街头"]
   },
   {
     "id": "bottom-008",
@@ -273,7 +273,7 @@
     "occasion": ["casual", "business", "date"],
     "material": "linen",
     "popularity": 82,
-    "tags": ["wide-leg", "flowy", "elegant"]
+    "tags": ["阔腿", "飘逸", "优雅"]
   },
   {
     "id": "bottom-009",
@@ -285,7 +285,7 @@
     "occasion": ["casual", "business", "date"],
     "material": "denim",
     "popularity": 88,
-    "tags": ["skinny", "dark-wash", "slim-fit"]
+    "tags": ["牛仔", "修身", "深色"]
   },
   {
     "id": "bottom-010",
@@ -297,7 +297,7 @@
     "occasion": ["casual", "date"],
     "material": "wool",
     "popularity": 72,
-    "tags": ["plaid", "midi", "preppy"]
+    "tags": ["格纹", "学院", "复古"]
   },
   {
     "id": "bottom-011",
@@ -309,7 +309,7 @@
     "occasion": ["casual"],
     "material": "cotton",
     "popularity": 78,
-    "tags": ["cargo", "utility", "streetwear"]
+    "tags": ["工装", "街头", "实用"]
   },
   {
     "id": "bottom-012",
@@ -321,7 +321,7 @@
     "occasion": ["sporty"],
     "material": "polyester",
     "popularity": 85,
-    "tags": ["leggings", "yoga", "stretchy"]
+    "tags": ["瑜伽", "弹力", "运动"]
   },
   {
     "id": "shoes-001",
@@ -333,7 +333,7 @@
     "occasion": ["casual", "sporty"],
     "material": "leather",
     "popularity": 95,
-    "tags": ["sneakers", "white-shoes", "all-match"]
+    "tags": ["运动鞋", "白鞋", "百搭"]
   },
   {
     "id": "shoes-002",
@@ -345,7 +345,7 @@
     "occasion": ["business", "formal"],
     "material": "leather",
     "popularity": 75,
-    "tags": ["oxford", "dress-shoes", "formal"]
+    "tags": ["牛津", "正装", "皮质"]
   },
   {
     "id": "shoes-003",
@@ -357,7 +357,7 @@
     "occasion": ["casual", "business", "date"],
     "material": "leather",
     "popularity": 80,
-    "tags": ["loafers", "slip-on", "business-casual"]
+    "tags": ["乐福鞋", "商务休闲", "皮质"]
   },
   {
     "id": "shoes-004",
@@ -369,7 +369,7 @@
     "occasion": ["sporty"],
     "material": "polyester",
     "popularity": 82,
-    "tags": ["running", "athletic", "cushioning"]
+    "tags": ["跑步", "运动", "缓震"]
   },
   {
     "id": "shoes-005",
@@ -381,7 +381,7 @@
     "occasion": ["casual", "date"],
     "material": "leather",
     "popularity": 78,
-    "tags": ["boots", "leather", "autumn"]
+    "tags": ["靴子", "皮质", "秋季"]
   },
   {
     "id": "shoes-006",
@@ -393,7 +393,7 @@
     "occasion": ["formal", "date"],
     "material": "leather",
     "popularity": 75,
-    "tags": ["heels", "pumps", "elegant"]
+    "tags": ["高跟", "优雅", "正式"]
   },
   {
     "id": "shoes-007",
@@ -405,7 +405,7 @@
     "occasion": ["casual", "date"],
     "material": "cotton",
     "popularity": 85,
-    "tags": ["canvas", "low-top", "casual"]
+    "tags": ["帆布", "休闲", "低帮"]
   },
   {
     "id": "shoes-008",
@@ -417,7 +417,7 @@
     "occasion": ["casual", "date"],
     "material": "leather",
     "popularity": 80,
-    "tags": ["combat", "platform", "punk"]
+    "tags": ["马丁", "厚底", "街头"]
   },
   {
     "id": "shoes-009",
@@ -429,7 +429,7 @@
     "occasion": ["casual"],
     "material": "leather",
     "popularity": 88,
-    "tags": ["chunky", "dad-shoes", "retro"]
+    "tags": ["老爹鞋", "厚底", "复古"]
   },
   {
     "id": "shoes-010",
@@ -441,7 +441,7 @@
     "occasion": ["casual", "business"],
     "material": "leather",
     "popularity": 72,
-    "tags": ["boat-shoes", "preppy", "nautical"]
+    "tags": ["帆船鞋", "学院", "休闲"]
   },
   {
     "id": "shoes-011",
@@ -453,7 +453,7 @@
     "occasion": ["sporty", "casual"],
     "material": "polyester",
     "popularity": 85,
-    "tags": ["running", "black", "breathable"]
+    "tags": ["跑步", "运动", "透气"]
   },
   {
     "id": "acc-001",
@@ -465,7 +465,7 @@
     "occasion": ["business", "formal", "casual"],
     "material": "cotton",
     "popularity": 85,
-    "tags": ["watch", "minimalist", "metal"]
+    "tags": ["手表", "极简", "金属"]
   },
   {
     "id": "acc-002",
@@ -477,7 +477,7 @@
     "occasion": ["casual", "sporty"],
     "material": "cotton",
     "popularity": 88,
-    "tags": ["cap", "baseball", "street"]
+    "tags": ["棒球帽", "街头", "休闲"]
   },
   {
     "id": "acc-003",
@@ -489,7 +489,7 @@
     "occasion": ["casual"],
     "material": "cotton",
     "popularity": 85,
-    "tags": ["backpack", "canvas", "everyday"]
+    "tags": ["背包", "帆布", "日常"]
   },
   {
     "id": "acc-004",
@@ -501,7 +501,7 @@
     "occasion": ["formal", "date", "casual"],
     "material": "cotton",
     "popularity": 78,
-    "tags": ["necklace", "delicate", "gold"]
+    "tags": ["项链", "精致", "金色"]
   },
   {
     "id": "acc-005",
@@ -513,7 +513,7 @@
     "occasion": ["casual", "business"],
     "material": "leather",
     "popularity": 80,
-    "tags": ["belt", "leather", "classic"]
+    "tags": ["腰带", "皮质", "经典"]
   },
   {
     "id": "acc-006",
@@ -525,7 +525,7 @@
     "occasion": ["casual", "business", "date"],
     "material": "leather",
     "popularity": 88,
-    "tags": ["tote", "bag", "large-capacity"]
+    "tags": ["托特包", "大容量", "通勤"]
   },
   {
     "id": "acc-007",
@@ -537,7 +537,7 @@
     "occasion": ["casual", "date"],
     "material": "knit",
     "popularity": 75,
-    "tags": ["scarf", "knit", "warm"]
+    "tags": ["围巾", "针织", "保暖"]
   },
   {
     "id": "acc-008",
@@ -549,7 +549,7 @@
     "occasion": ["casual", "date"],
     "material": "cotton",
     "popularity": 82,
-    "tags": ["sunglasses", "shades", "summer"]
+    "tags": ["太阳镜", "街头", "夏季"]
   },
   {
     "id": "acc-009",
@@ -561,7 +561,7 @@
     "occasion": ["formal", "date"],
     "material": "leather",
     "popularity": 72,
-    "tags": ["handbag", "statement", "evening"]
+    "tags": ["手提包", "亮点", "晚宴"]
   },
   {
     "id": "acc-010",
@@ -573,6 +573,6 @@
     "occasion": ["sporty", "casual"],
     "material": "polyester",
     "popularity": 80,
-    "tags": ["backpack", "gym", "sporty"]
+    "tags": ["背包", "运动", "健身"]
   }
 ]

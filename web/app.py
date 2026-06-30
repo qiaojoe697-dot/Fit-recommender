@@ -1,15 +1,12 @@
 """
 web/app.py — Streamlit 网页界面（三 Tab 结构）
-
-Tab1：单品搭配推荐      按季节/场合/风格/颜色打分，推荐单品组合
+Tab1：单品搭配推荐      按季节/场合/风格/颜色/版型打分，推荐单品组合
 Tab2：个性化穿搭推荐    基于用户画像（显式+隐式）+杰卡德相似度推荐穿搭库
 Tab3：相似穿搭推荐      详情页逻辑，以目标穿搭为基准输出10高+10低
 """
 from __future__ import annotations
-
 import sys
 from pathlib import Path
-
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 import streamlit as st
@@ -18,6 +15,7 @@ from src.model import UserBehavior, UserPreference, UserProfile
 from src.outfit_recommender import load_outfits, recommend_for_user, recommend_similar
 from src.profile import build_user_profile
 from src.recommender import recommend
+
 
 # ── 页面配置 ──────────────────────────────────────────────────────────────────
 st.set_page_config(page_title="穿搭推荐系统", page_icon="👗", layout="wide")
@@ -36,6 +34,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+
 # ── 标题 ──────────────────────────────────────────────────────────────────────
 st.title("👗 穿搭推荐系统")
 st.markdown("支持 **单品搭配推荐** · **个性化穿搭推荐（用户画像 + 杰卡德相似度）** · **相似穿搭推荐（10高+10低）**")
@@ -43,25 +42,31 @@ st.divider()
 
 tab1, tab2, tab3 = st.tabs(["🎯 单品搭配推荐", "👤 个性化穿搭推荐", "🔍 相似穿搭推荐"])
 
+
 # ══════════════════════════════════════════════════════════════════════════════
 # TAB 1：单品搭配推荐（ClothingItem 打分组合）
 # ══════════════════════════════════════════════════════════════════════════════
 with tab1:
     st.subheader("根据季节、场合、风格推荐最优单品组合")
-    st.markdown('<div class="section-note">算法：单品7维加权打分（风格×2.5 + 场合×2.0 + 季节×1.5 + 颜色×1.5 + 材质×1.0 + 标签×1.0 + 热门度×0.5）→ 三维组合 → 颜色和谐度加成 + 风格一致性加成</div>', unsafe_allow_html=True)
+    st.markdown('<div class="section-note">算法：单品7维加权打分（风格×2.5 + 场合×2.0 + 季节×1.5 + 颜色×1.5 + 材质×1.0 + 版型×1.0 + 热门度×0.5）→ 三维组合 → 颜色和谐度加成 + 风格一致性加成</div>', unsafe_allow_html=True)
     st.markdown("")
+
     col_left, col_main = st.columns([1, 3])
+
     with col_left:
         season = st.selectbox("🌤 季节", ["spring","summer","autumn","winter"],
             format_func=lambda x: {"spring":"🌸 春季","summer":"☀️ 夏季",
                                     "autumn":"🍂 秋季","winter":"❄️ 冬季"}[x], key="t1_season")
+
         occasion = st.selectbox("📍 场合", ["casual","business","formal","sporty","date"],
             format_func=lambda x: {"casual":"🛍 日常休闲","business":"💼 商务办公",
                                     "formal":"🎩 正式场合","sporty":"🏃 运动健身",
                                     "date":"💕 约会出行"}[x], key="t1_occasion")
+
         style = st.selectbox("✨ 风格", ["casual","formal","sporty","street"],
             format_func=lambda x: {"casual":"😊 休闲简约","formal":"👔 商务正式",
                                     "sporty":"🏅 运动机能","street":"🔥 街头潮流"}[x], key="t1_style")
+
         color = st.selectbox("🎨 颜色偏好",
             [None,"white","black","gray","blue","navy","brown","beige",
              "red","pink","green","gold","purple","orange"],
@@ -70,21 +75,29 @@ with tab1:
                 "navy":"🌊 藏青","brown":"🤎 棕","beige":"🟤 米","red":"❤️ 红",
                 "pink":"🩷 粉","green":"💚 绿","gold":"🥇 金",
                 "purple":"💜 紫","orange":"🧡 橙"}.get(x, x), key="t1_color")
-        
-        # 新增：标签偏好多选（中文）
-        tag_options = ["基础款", "百搭", "经典", "宽松", "修身", 
-                       "舒适", "正式", "休闲", "街头", "运动",
-                       "牛仔", "皮质", "针织", "复古", "极简"]
-        tag_prefs = st.multiselect(
-            "🏷️ 风格标签偏好（可选）",
-            tag_options,
-            default=[],
-            key="t1_tags",
-            help="选择你喜欢的风格标签，如宽松、修身、复古、极简等",
+
+        # 版型偏好选择（替代原来的标签）
+        fit_options = [
+            (None, "不限"),
+            ("oversized", "宽松"),
+            ("regular", "常规"),
+            ("slim", "修身"),
+            ("skinny", "紧身"),
+            ("wide-leg", "阔腿"),
+        ]
+        fit_choice = st.selectbox(
+            "👖 版型偏好",
+            range(len(fit_options)),
+            format_func=lambda i: fit_options[i][1],
+            index=0,
+            key="t1_fit",
+            help="选择你喜欢的版型：宽松、常规、修身、紧身、阔腿",
         )
-        
+        fit_pref = fit_options[fit_choice][0]
+
         top_n = st.slider("推荐数量", 1, 6, 3, key="t1_topn")
         btn1 = st.button("🚀 获取推荐", type="primary", use_container_width=True, key="btn1")
+
     with col_main:
         if btn1:
             pref = UserPreference(
@@ -92,15 +105,17 @@ with tab1:
                 occasion=occasion,
                 style=style, 
                 color_preference=color, 
-                tag_preferences=tag_prefs,  # 新增：传入标签偏好
+                fit_preference=fit_pref,  # 版型偏好
                 top_n=top_n
             )
             with st.spinner("搭配中..."):
                 outfits = recommend(pref)
+
             if not outfits:
                 st.warning("😕 没有找到匹配搭配，请尝试调整条件。")
             else:
                 st.success(f"✅ 找到 **{len(outfits)}** 套搭配")
+
                 for i, outfit in enumerate(outfits, 1):
                     col_info, col_score = st.columns([5, 1])
                     with col_info:
@@ -110,24 +125,32 @@ with tab1:
                             f'<span class="item-tag">{icons.get(it.category,"🔸")} {it.name}</span>'
                             for it in outfit.items)
                         st.markdown(tags_html, unsafe_allow_html=True)
-                        
-                        # 新增：展示材质和标签信息
+
+                        # 展示材质信息
                         materials = list({it.material for it in outfit.items if it.material})
                         if materials:
+                            mat_names = {
+                                "cotton":"棉", "wool":"羊毛", "knit":"针织",
+                                "denim":"牛仔", "leather":"皮质", "silk":"丝绸",
+                                "linen":"亚麻", "polyester":"聚酯纤维"
+                            }
                             mat_html = "".join(
-                                f'<span class="tag-chip">🧵 {m}</span>' 
+                                f'<span class="tag-chip">🧵 {mat_names.get(m, m)}</span>' 
                                 for m in materials[:3])
                             st.markdown(f"**材质：** {mat_html}", unsafe_allow_html=True)
-                        
-                        all_tags = []
-                        for it in outfit.items:
-                            all_tags.extend(it.tags)
-                        if all_tags:
-                            tag_html = "".join(
-                                f'<span class="tag-chip">{t}</span>' 
-                                for t in list(set(all_tags))[:6])
-                            st.markdown(f"**风格标签：** {tag_html}", unsafe_allow_html=True)
-                        
+
+                        # 展示版型信息
+                        fits = list({it.fit for it in outfit.items if it.fit and it.fit != "regular"})
+                        if fits:
+                            fit_names = {
+                                "oversized":"宽松", "regular":"常规", "slim":"修身",
+                                "skinny":"紧身", "wide-leg":"阔腿"
+                            }
+                            fit_html = "".join(
+                                f'<span class="tag-chip">👖 {fit_names.get(f, f)}</span>' 
+                                for f in fits[:3])
+                            st.markdown(f"**版型：** {fit_html}", unsafe_allow_html=True)
+
                         if outfit.style_tip:
                             st.markdown(f'<div class="tip-box">💡 {outfit.style_tip}</div>',
                                         unsafe_allow_html=True)
@@ -138,6 +161,7 @@ with tab1:
                     st.divider()
         else:
             st.info("在左侧选择条件后点击「获取推荐」。")
+
 
 # ══════════════════════════════════════════════════════════════════════════════
 # TAB 2：个性化穿搭推荐（用户画像 + 杰卡德相似度）
@@ -186,7 +210,6 @@ with tab2:
                 [UserBehavior(outfit_id=outfit_name_to_id[n], action="view") for n in viewed]
                 + [UserBehavior(outfit_id=outfit_name_to_id[n], action="like") for n in liked]
             )
-
             outfit_map = {o.id: o for o in all_outfits_for_behavior}
 
             # 构建用户画像（显式 + 隐式 → merged）
@@ -253,7 +276,6 @@ with tab2:
                                 f'<div style="color:#aaa;font-size:0.8rem">{label}</div>',
                                 unsafe_allow_html=True)
                 st.divider()
-
         else:
             st.info("在左侧配置标签和行为记录后点击「个性化推荐」。")
             st.markdown("""
@@ -267,6 +289,7 @@ with tab2:
 | 相似度 | 基础：J = \|A∩B\| / \|A∪B\|；加权：显式标签权重更高 |
 | 冷启动 | 无偏好数据时，改用热门度降序兜底 |
 """)
+
 
 # ══════════════════════════════════════════════════════════════════════════════
 # TAB 3：相似穿搭推荐（穿搭 → 穿搭，10高+10低）
@@ -335,10 +358,14 @@ with tab3:
                                 unsafe_allow_html=True)
                     st.markdown("---")
         else:
-            st.info("在左侧选择基准穿搭后点击「查找相似穿搭」。")
+            st.info("选择基准穿搭后点击「查找相似穿搭」。")
             st.markdown("""
-**说明**
-- 高相似组：与基准穿搭标签重叠度高，适合作为同类替换推荐
-- 低相似组：与基准穿搭风格差异大，适合作为对比或探索推荐
-- 阈值可实时调整，影响高/低组的划分比例
+**应用场景**
+- 高相似推荐：用户喜欢某套穿搭时，推荐风格相近的替代方案
+- 低相似推荐：用户想换风格时，推荐差异较大的穿搭，拓展选择面
+
+**分组规则**
+- 高相似组：相似度 ≥ 阈值，取前 10 套
+- 低相似组：相似度 < 阈值，取前 10 套
+- 各组内按相似度降序排列
 """)
